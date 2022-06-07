@@ -1,0 +1,18 @@
+@viewport{
+    zoom: 1.0;
+    width: device-width;
+  }
+  
+  .App-header {
+    background-image: url('./Images/abeja.jpg');
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: black;
+  }
+  .App-header .img{
+    align-items: left;
+  }
