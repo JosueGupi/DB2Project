@@ -30,7 +30,7 @@ app.post('/login', function (req, res) {
         const password = req.body.password
 
         // query to the database and get the records
-        request.query("SELECT U.idUser, U.username, U.administrator, S.name, 'USA' as [Location] FROM DB_USA.dbo.Users U INNER JOIN DB_USA.dbo.Subscription S ON U.idSubscription = S.idSubscription WHERE username = '"+username+"' AND [password] = HASHBYTES('SHA2_256','"+password+"')", function (err, recordset) {
+        request.query("EXEC SP_Login_J '"+username+"','"+password+"'", function (err, recordset) {
 
             if (err) console.log(err)
 
