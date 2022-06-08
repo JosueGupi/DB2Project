@@ -14,7 +14,8 @@ export function LoginForm(){
             console.log(response.data.recordset)
 
         } catch (err) {
-            alert("ERROR LOGIN!!!")
+            alert(err.message)
+            console.log(err)
         }
     }
     const routeChange = () =>{ 
@@ -42,7 +43,7 @@ export function LoginForm(){
                 </center>
             </form>
             <center>
-                <button type="button" class="btn btn-warning" onClick={routeChange}>Register</button>
+                <button type="button" className="btn btn-warning" onClick={routeChange}>Register</button>
             </center>
               
         </Fragment>
