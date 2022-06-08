@@ -17,7 +17,7 @@ export function LoginForm(){
             if(response.data.recordset[0].administrator == 1){
                 navigate('/admin',{state:{username:user}})
             }else{
-                navigate('')
+                navigate('/')
             }
             
 
@@ -27,7 +27,7 @@ export function LoginForm(){
         }
     }
     const routeChange = () =>{ 
-        let path = '/admin'; 
+        let path = '/register'; 
         navigate(path);
     }
 

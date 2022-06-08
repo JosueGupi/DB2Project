@@ -8,6 +8,7 @@ import { AdminPage } from './admins/AdminPage';
 import {AdminStoresForm} from './admins/AdminStoresForm';
 import {AdminSubs} from './admins/AdminSubs';
 import {AdminShipping} from './admins/AdminShipping';
+import {CreateAccountPage} from './createAccount/CreateAccountPage';
 
 import '../App.css';
 
@@ -22,6 +23,8 @@ import '../App.css';
                     <Route exact path = "/adminStore" element = {<AdminStoresForm/>}/>
                     <Route exact path = "/adminSubs" element = {<AdminSubs/>}/>
                     <Route exact path = "/adminShipping" element = {<AdminShipping/>}/>
+                    <Route exact path = "/register" element = {<CreateAccountPage/>}/>
+
                 </Routes>
             </div>
         </Router>
