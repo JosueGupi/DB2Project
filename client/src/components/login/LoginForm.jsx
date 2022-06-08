@@ -11,7 +11,15 @@ export function LoginForm(){
     const onSubmit = async(data) => {
         try {
             const response = await axios.post('http://localhost:3001/users/login',data)
-            console.log(response.data.recordset)
+            console.log(response)
+            const user = response.data.recordset[0].username;
+
+            if(response.data.recordset[0].administrator == 1){
+                navigate('/admin',{state:{username:user}})
+            }else{
+                navigate('')
+            }
+            
 
         } catch (err) {
             alert(err.message)

@@ -1,6 +1,6 @@
 USE DB_USA;  
 GO  
-CREATE PROCEDURE SP_ChangeLocation_J   
+ALTER PROCEDURE SP_ChangeLocation_J   
     @country varchar(32),   
     @storeNumber varchar(32),
     @latitude FLOAT,
@@ -68,13 +68,22 @@ BEGIN
     END TRY
 
     BEGIN CATCH
-        SELECT 'ERROR'
+        INSERT INTO DB_USA.dbo.ERROR(
+            idError
+            ,[DESCRIPTION]
+        )VALUES(
+            1
+            ,ERROR_MESSAGE()
+        )
     END CATCH
     SET NOCOUNT OFF;
 END 
+SELECT * FROM dbo.Error
 
-
-
+CREATE TABLE dbo.ERROR(
+    idError INT
+    , [DESCRIPTION] VARCHAR(MAX)
+)
 
 
 
