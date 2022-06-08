@@ -18,7 +18,7 @@
   }
 
   .Admin-header {
-    background-image: url('./Images/AdminBGJ.jpg');
+    background-image: url('./Images/AdminBGJ.png');
     min-height: 100vh;
     display: flex;
     flex-direction: column;

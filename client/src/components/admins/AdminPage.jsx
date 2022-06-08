@@ -12,7 +12,7 @@ export function AdminPage() {
                 
               <div className='container-fluid'>
                 <div className='form-div'>
-                  <h1 className ="display-1" style={{color:'Dodgerblue',textAlign:'center'}}>Username</h1>
+                  <h1 className ="display-1" style={{color:'Gold',textAlign:'center'}}>Username</h1>
                   <div className="row" >
                   <div className="col"style={{textAlign:'center',color:'white',opacity:0.85,backgroundColor:'gray', borderRadius: '50px 50px 50px 50px',padding:'2%', margin:'2%'}}>
                     <p className='h1'>Set Store Location</p>
