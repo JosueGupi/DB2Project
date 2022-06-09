@@ -1,0 +1,23 @@
+.collection-preview {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+  
+    .title {
+      font-size: 28px;
+      margin-bottom: 25px;
+    }
+  
+    .preview {
+      display: flex;
+      justify-content: space-between;
+    }
+    .parent{
+        display: flex;
+        flex-wrap: wrap;
+        grid-gap: 2rem;
+        margin-block: 2rem;
+        justify-items: center;
+        align-items: center;
+      }
+  }
