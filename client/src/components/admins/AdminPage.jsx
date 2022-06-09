@@ -1,35 +1,36 @@
 import React, { Fragment } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
-import { AdminStoresForm } from './AdminStoresForm';
-
+import {useLocation} from  "react-router-dom";
+import {useNavigate} from "react-router-dom"
 
 export function AdminPage() {
+  let navigate = useNavigate();
+  const {state} = useLocation();
+  const userLogged = 'admin'
+  
+  const changeStoreRoute = () =>{ 
+    let path = '/adminStore'; 
+    navigate(path);
+  }
+  const changeSubsRoute = () =>{ 
+    let path = '/adminSubs'; 
+    navigate(path);
+  }
+  const changeSubsShipping = () =>{ 
+    let path = '/adminShipping'; 
+    navigate(path);
+  }
+
+  
+
   return (
     <Fragment>
         <header className="Admin-header">
          
             <div style={{ backgroundImage: 'url(require("./Images/adminBGJ.jpg"))' }}>
-                
-              <div className='container-fluid'>
-                <div className='form-div'>
-                  <h1 className ="display-1" style={{color:'Gold',textAlign:'center'}}>Username</h1>
-                  <div className="row" >
-                  <div className="col"style={{textAlign:'center',color:'white',opacity:0.85,backgroundColor:'gray', borderRadius: '50px 50px 50px 50px',padding:'2%', margin:'2%'}}>
-                    <p className='h1'>Set Store Location</p>
-                    <AdminStoresForm />
-                  </div>
-                  <div className="col" style={{textAlign:'center',color:'white',opacity:0.85,backgroundColor:'gray', borderRadius: '50px 50px 50px 50px',padding:'2%', margin:'2%'}}>
-                    SECOND
-                  </div>
-                  <div className="col" style={{textAlign:'center',color:'white',opacity:0.85,backgroundColor:'gray', borderRadius: '50px 50px 50px 50px',padding:'2%', margin:'2%'}}>
-                    THIRD
-                  </div>
-
-                  </div>
-                  <br/>
-                  
-                </div>
-              </div>
+            <button type="button" className="btn btn-warning" onClick={changeSubsRoute}>Change Subs Price</button>
+            <button type="button" className="btn btn-warning" onClick={changeStoreRoute}>Change Store Location</button>
+            <button type="button" className="btn btn-warning" onClick={changeSubsShipping}>Change Shipping</button>
             </div>
 
         </header>

@@ -1,6 +1,6 @@
 const app = require('express').Router()
 
-app.post('/changeLocation', function (req, res) {
+app.post('/changeShipping', function (req, res) {
 
     var sql = require("mssql");
 
@@ -27,12 +27,12 @@ app.post('/changeLocation', function (req, res) {
         // create Request object
         var request = new sql.Request();
         const country = req.body.country
-        const store = req.body.store
-        const lat = req.body.latq
-        const lng = req.body.lngq
+        const price = req.body.price
+        
+        
         
         // query to the database and get the records
-        request.query("EXEC SP_ChangeLocation_J '"+country+"','"+store+"',"+lat+","+lng+"", function (err, recordset) {
+        request.query("EXEC SP_ChangeShipping_J '"+country+"',"+price, function (err, recordset) {
 
             if (err) console.log(err)
 
