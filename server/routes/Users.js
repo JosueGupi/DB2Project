@@ -48,8 +48,8 @@ app.post('/create_account', function (req, res) {
 
   // config for your database
   var config = {
-      user: '',
-      password: '',
+      user: 'sa',
+      password: '(#Pi9Vare1Xu!#)',
       server: 'localhost',
       database: 'DB_USA',
       port:1433,
@@ -83,7 +83,7 @@ app.post('/create_account', function (req, res) {
       } 
 
       //query to the database and get the records
-      request.query("EXEC SP_CreateAccount_G '"+name+"', '"+lastName+"', '"+email+"', '"+username+"', '"+password+"', '"+subscription+"', '"+country+"', '"+is_admin+"'", function (err, recordset) {
+      request.query("EXEC SP_CreateAccount_G '"+name+"', '"+lastName+"', '"+email+"', '"+username+"', '"+password+"', '"+subscription+"', '"+country+"',"+is_admin, function (err, recordset) {
 
           if (err) console.log(err)
           // send records as a response 
