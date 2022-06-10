@@ -16,9 +16,11 @@ export function CreateAccountForm(){
     const onSubmit = async(data) => {
         try {
             const response = await axios.post('http://localhost:3001/users/create_account',data)
-            console.log(response.data.recordset) 
+            console.log(response.data.recordset[0].name) 
+            alert("User created successfully")
+            navigate('/')            
         } catch (err) {
-            alert("ERROR LOGIN!!!" + err)
+            alert("Error creating account")
         }
     }
 
@@ -89,7 +91,7 @@ export function CreateAccountForm(){
             </form>
             <center>
                 <button type="button" class="btn btn-warning" onClick={routeChange}>Back to home</button>
-            </center>
+            </center>  
         </Fragment>
     )
 
