@@ -9,6 +9,7 @@ import {AdminStoresForm} from './admins/AdminStoresForm';
 import {AdminSubs} from './admins/AdminSubs';
 import {AdminShipping} from './admins/AdminShipping';
 import {CreateAccountPage} from './createAccount/CreateAccountPage';
+import {CatalogPage} from './catalog/CatalogPage';
 
 import '../App.css';
 
@@ -24,6 +25,7 @@ import '../App.css';
                     <Route exact path = "/adminSubs" element = {<AdminSubs/>}/>
                     <Route exact path = "/adminShipping" element = {<AdminShipping/>}/>
                     <Route exact path = "/register" element = {<CreateAccountPage/>}/>
+                    <Route exact path = "/catalog" element = {<CatalogPage/>}/>
 
                 </Routes>
             </div>
