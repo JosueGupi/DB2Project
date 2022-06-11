@@ -1,20 +1,21 @@
-import React from 'react';
-import './custom-button.styles.scss';
+import React, { Fragment } from 'react';
+import './custom-button.styles.scss'
 
-const CustomButton = ({
+export function CustomButton({
   children,
   isGoogleSignIn,
   inverted,
-  ...otherProps
-}) => (
-  <button
-    className={` ${inverted ? "inverted" : ""} ${
-      isGoogleSignIn ? "google-sign-in" : ""
-    } custom-button`}
-    {...otherProps}
-  >
-    {children}
-  </button>
-);
-
-export default CustomButton;
+  ...otherProps}) {
+  return (
+    <Fragment>
+        <button
+          className={` ${inverted ? "inverted" : ""} ${
+            isGoogleSignIn ? "google-sign-in" : ""
+          } custom-button`}
+          {...otherProps}
+        >
+          {children}
+        </button>
+    </Fragment>
+  )
+}

@@ -10,14 +10,10 @@
 
   .preview {
     display: flex;
-    justify-content: space-between;
-  }
-  .parent{
-    display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
     grid-gap: 2rem;
     margin-block: 2rem;
-    justify-items: center;
-    align-items: center;
   }
 }
