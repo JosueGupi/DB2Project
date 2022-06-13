@@ -12,6 +12,8 @@ import {AdminCEmployee} from './adminsEmployeeCRUD/AdminCEmployee';
 import {AdminREmployee} from './adminsEmployeeCRUD/AdminREmployee';
 import {AdminUEmployee} from './adminsEmployeeCRUD/AdminUEmployee';
 import {AdminDEmployee} from './adminsEmployeeCRUD/AdminDEmployee';
+import {AdminCProduct} from './adminsProductCRUD/AdminCProduct'
+import {AdminDProduct} from './adminsProductCRUD/AdminDProduct'
 
 import {CreateAccountPage} from './createAccount/CreateAccountPage';
 import {CatalogPage} from './catalog/CatalogPage';
@@ -33,7 +35,8 @@ import '../App.css';
                     <Route exact path = "/adminREmployee" element = {<AdminREmployee/>}/>
                     <Route exact path = "/adminUEmployee" element = {<AdminUEmployee/>}/>
                     <Route exact path = "/adminDEmployee" element = {<AdminDEmployee/>}/>
-                    
+                    <Route exact path = "/adminCProduct" element = {<AdminCProduct/>}/>
+                    <Route exact path = "/adminDProduct" element = {<AdminDProduct/>}/>
                     <Route exact path = "/register" element = {<CreateAccountPage/>}/>
                     <Route exact path = "/catalog" element = {<CatalogPage/>}/>
 
