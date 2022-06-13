@@ -1,0 +1,113 @@
+.collection-preview {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+  
+    .title {
+      font-size: 28px;
+      margin-bottom: 25px;
+    }
+  
+    .preview {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+      grid-gap: 2rem;
+      margin-block: 2rem;
+    }
+  }
+  .card {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    align-items: center;
+    position: static;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 20px;
+  
+    .image {
+      width: 100%;
+      height: auto;
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 5px;
+    }
+    .card-text{
+      display: flex;
+      justify-content: space-between;
+      font-size: 15px;
+    }
+    .card-title {
+      width: 100%;
+      height: 5%;
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+  
+      .name {
+        width: 90%;
+        margin-bottom: 15px;
+      }
+  
+      .price {
+        width: 10%;
+      }
+    }
+  }
+  .custom-button {
+    min-width: 165px;
+    width: auto;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: 0.5px;
+    line-height: 50px;
+    padding: 0 35px 0 35px;
+    font-size: 15px;
+    background-color: black;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bolder;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+  
+    &:hover {
+      background-color: white;
+      color: black;
+      border: 1px solid black;
+    }
+  }
+  .header {
+    height: 20px;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  
+    .logo-container {
+      height: 100%;
+      width: 70px;
+      padding: 25px;
+    }
+  
+    .options {
+      width: 50%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      cursor: pointer;
+  
+      .option {
+        padding: 10px 15px;
+        text-decoration: none;
+        color: gold;
+      }
+    }
+  }
+  
