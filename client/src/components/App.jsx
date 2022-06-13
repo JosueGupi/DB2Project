@@ -17,6 +17,7 @@ import {AdminDProduct} from './adminsProductCRUD/AdminDProduct'
 
 import {CreateAccountPage} from './createAccount/CreateAccountPage';
 import {CatalogPage} from './catalog/CatalogPage';
+import {CheckoutPage} from './checkout/CheckoutPage';
 
 import '../App.css';
 
@@ -39,6 +40,7 @@ import '../App.css';
                     <Route exact path = "/adminDProduct" element = {<AdminDProduct/>}/>
                     <Route exact path = "/register" element = {<CreateAccountPage/>}/>
                     <Route exact path = "/catalog" element = {<CatalogPage/>}/>
+                    <Route exact path = "/checkout" element = {<CheckoutPage/>}/>
 
                 </Routes>
             </div>

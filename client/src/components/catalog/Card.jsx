@@ -11,10 +11,21 @@ export function Card({card}){
         navigate(path);
     }
 
+    const action = () => {
+        console.log(card.name);
+    }
+
     return (
-        <div className="col" style={{color:'White'}}>
-            <p className="text">{card.name} {card.aged} {card.whiskyType} {card.supplier} {card.subscription}</p>
-            
-        </div>
+        <div className="col">
+           {/* <p className="text">{card.name} {card.aged} {card.whiskyType} {card.supplier} {card.subscription}</p>*/} 
+            <div className="card">
+                    <div class="card-body">
+                        <h5 className="card-title">{card.name}</h5>
+                        <img className= "image" src={"./Images/abeja.jpg"}/>
+                        <p className ="card-text">Aged {card.aged}</p>
+                        <button onClick={action} class="custom-button" >Add Cart</button>
+                    </div>
+                    </div>
+                </div>
     )
 }

@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react';
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Card } from './Card';
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import './Catalog.styles.scss';
 
 export function CatalogPage(){
 
@@ -19,6 +21,31 @@ export function CatalogPage(){
 
     return (
         <Fragment>
+            <div class="container">
+            <nav class="navbar navbar-expand-lg bg-light">
+                <div class="container-fluid">
+                    <Link  to ="/">
+                        <img className= "image" src={"./Images/crown.svg"}/>
+                    </Link>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                        </li>
+                    </ul>
+                    <span class="navbar-text">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/checkout">Cart</a>
+                        </li>
+                    </span>
+                    </div>
+                </div>
+
+            </nav>
+            </div>
            <header className="App-header">   
                 <div style={{ backgroundImage: 'url(require("./Images/loginBackgroundJ.jpg"))' }}>
                     <div className='container mx-auto'>

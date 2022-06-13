@@ -6,8 +6,8 @@ app.post('/get_catalog', function (req, res) {
 
   // config for your database
   var config = {
-      user: '',
-      password: '',
+      user: 'Geisel',
+      password: 'Rosado1010',
       server: 'localhost',
       database: 'DB_USA',
       port:1433,
