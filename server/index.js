@@ -5,6 +5,7 @@ const storeRouter = require('./routes/Stores')
 const subRouter = require('./routes/Subs')
 const shippingRouter = require('./routes/Shipping')
 const catalogRouter = require('./routes/Catalog')
+const AdminEmployeesRouter = require('./routes/AdminEmployees')
 const cors = require('cors')
 
 
@@ -15,6 +16,7 @@ app.use('/stores',storeRouter);
 app.use('/subs',subRouter);
 app.use('/shipping',shippingRouter);
 app.use('/catalog',catalogRouter);
+app.use('/adminEmployees',AdminEmployeesRouter);
 
 app.listen(3001,()=>{
     console.log('Servers Run')
