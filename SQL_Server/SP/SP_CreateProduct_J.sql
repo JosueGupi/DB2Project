@@ -120,7 +120,13 @@ DECLARE @supplierID INT
             SELECT @whiskyID,@qty,@price WHERE @storeNumber = 'Store C';
         END       
 
+    SELECT @name as product,email FROM DB_USA.dbo.Users WHERE administrator = 0
+    UNION
+    SELECT @name as product,email FROM DB_Ireland.dbo.Users WHERE administrator = 0
+    UNION
+    SELECT @name as product,email FROM DB_Scotland.dbo.Users WHERE administrator = 0
 
+    
         
     END TRY
 
@@ -161,3 +167,10 @@ SELECT * FROM DB_USA.dbo.ERROR
 
  EXEC SP_CreateProduct_J 'USA','Store B',20,'LuisSA',1,'LuisDrink',2,'New','x',20
  DELETE FROM DB_USA.dbo.WhiskyType WHERE idWhiskyType > 6
+
+SELECT * FROM DB_Scotland.dbo.Users
+UPDATE DB_Scotland.dbo.Users
+SET email = 'josuegupi@gmail.com'
+WHERE idUser = 3
+
+INSERT INTO DB_USA.dbo.Users VALUES(1,0,'Josue','Gutierrez','Gupi','123','josuegupi64@gmail.com')

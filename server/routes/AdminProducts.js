@@ -37,7 +37,7 @@ app.post('/createProduct', function (req, res) {
         const img = req.body.file
         const price = req.body.price
 
-        console.log(req.body)
+        
         // query to the database and get the records
         
         request.query("EXEC SP_CreateProduct_J '"+country+"','"+store+"',"+qty+",'"+supplier+"',"+sub+",'"+name+"',"+aged+",'"+type+"','"+img+"',"+price, function (err, recordset) {
@@ -45,7 +45,45 @@ app.post('/createProduct', function (req, res) {
             if (err) console.log(err)
 
             // send records as a response
+            console.log(recordset.recordsets[1])
+            var nodemailer = require('nodemailer');
+            const transporter = nodemailer.createTransport({
+              host: 'smtp.ethereal.email',
+              port: 587,
+              secure: false,
+              auth: {
+                  user: 'nigel.kessler71@ethereal.email',
+                  pass: 'rWt94pscGvnPmneM1x'
+              }
+            });
+
             
+            var cont = 0;
+
+            while(cont <recordset.recordsets[1].length){
+              var email = recordset.recordsets[1][cont].email;
+              console.log(email)
+              var product = recordset.recordsets[1][cont].product;
+              var mailOptions = {
+                from: "Whisky",
+                to: email,
+                subject: "New Product",
+                text: "The new "+ product+" has arrived to our stores"
+              }
+              transporter.sendMail(mailOptions,(error,info)=>{
+                if (error){
+                  console.log(error.message)
+                }
+                else{
+                  console.log('WORKS!!!')
+                }
+              });
+              
+
+              cont++;
+            }
+
+
             res.json(recordset);
 
         });
