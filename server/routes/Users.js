@@ -6,8 +6,8 @@ app.post('/login', function (req, res) {
 
     // config for your database
     var config = {
-        user: 'sa',
-        password: '(#Pi9Vare1Xu!#)',
+        user: 'Geisel',
+        password: 'Rosado1010',
         server: 'localhost',
         database: 'DB_USA',
         port:1433,
@@ -48,8 +48,8 @@ app.post('/create_account', function (req, res) {
 
   // config for your database
   var config = {
-      user: 'sa',
-      password: '(#Pi9Vare1Xu!#)',
+      user: 'Geisel',
+      password: 'Rosado1010',
       server: 'localhost',
       database: 'DB_USA',
       port:1433,

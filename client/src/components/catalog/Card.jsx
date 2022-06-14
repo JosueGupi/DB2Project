@@ -2,6 +2,8 @@ import React, { Fragment } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {useNavigate} from 'react-router-dom'
 
+import axios from 'axios';
+
 export function Card({card}){
 
     let navigate = useNavigate();
@@ -12,7 +14,13 @@ export function Card({card}){
     }
 
     const action = () => {
-        console.log(card.name);
+        try {
+            const response = axios.post('http://localhost:3001/catalog/addShoppingCart',{name:card.name,idUser:card.idUser})
+            console.log("works add");
+            alert("Added to shopping cart")         
+        } catch (err) {
+            alert("Error adding to shopping cart")
+        }
     }
 
     return (

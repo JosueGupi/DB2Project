@@ -56,16 +56,17 @@ export function CreateAccountForm(){
                     <label htmlFor="password" className="form-label" style={{color:'White'}}>Password</label>
                     <input type="password" className="form-control" id="password" placeholder="Your password"
                     {...register('password',{required:true})}/>
+                    <small id="passHelp" class="form-text text-muted">The password must contain at least four letters and four numbers.</small>
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="subscription" className="form-label" style={{color:'White'}}>Subscription</label>
                     <select type="text" className="form-control" id="subscription" placeholder="Your subscription"
                     {...register('subscription')}>
-                        <option select value="Not Applicable">Not Applicable</option>
-                        <option value="Tier Short Glass">Tier Short Glass</option>
-                        <option value="Tier Gleincairn">Tier Gleincairn</option>
-                        <option value="Master Distiller">Tier Master Distiller</option>
+                        <option select value="No tier">Not Applicable</option>
+                        <option value="Short Glass">Tier Short Glass</option>
+                        <option value="Gleincairn">Tier Gleincairn</option>
+                        <option value="Distiller">Tier Master Distiller</option>
                     </select>
                 </div>
 

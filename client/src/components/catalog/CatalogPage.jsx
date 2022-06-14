@@ -6,8 +6,11 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import './Catalog.styles.scss';
+import {useLocation} from  "react-router-dom";
 
 export function CatalogPage(){
+
+    const {state} = useLocation(); // get params 
 
     const [arrayCard, setArrayCard] = useState([]) //hook use state
 
@@ -36,6 +39,11 @@ export function CatalogPage(){
                         <a class="nav-link active" href="/">Home</a>
                         </li>
                     </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                        <a>User {state.username} </a>
+                        </li>
+                    </ul>
                     <span class="navbar-text">
                     <li class="nav-item">
                         <a class="nav-link active" href="/checkout">Cart</a>
@@ -57,7 +65,7 @@ export function CatalogPage(){
                                     arrayCard.map((i) =>{
                                     return(
                                         <Card card = {{name:i.name[0], aged:i.aged, whiskyType:i.name[1], 
-                                                       supplier:i.name[2], subscription:i.name[3]}}/>
+                                                       supplier:i.name[2], subscription:i.name[3], idUser:state.idUser}}/>
                                     )})
                                 } 
                             </div>

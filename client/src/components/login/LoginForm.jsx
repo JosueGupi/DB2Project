@@ -13,11 +13,12 @@ export function LoginForm(){
             const response = await axios.post('http://localhost:3001/users/login',data)
             console.log(response)
             const user = response.data.recordset[0].username;
+            const idUser = response.data.recordset[0].idUser;
 
             if(response.data.recordset[0].administrator == 1){
                 navigate('/admin',{state:{username:user}})
             }else{
-                navigate('/')
+                navigate('/catalog',{state:{username:user,idUser:idUser}})
             }
             
 
@@ -43,8 +44,7 @@ export function LoginForm(){
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label" style={{color:'White'}}>Password</label>
                     <input type="password" className="form-control" id="password" placeholder="Your password"
-                    {...register('password',{required:true})}
-                    />
+                    {...register('password',{required:true})}/>
                 </div>
                 <center>
                     <input type='submit' className='btn btn-warning' value=' Login '/>
