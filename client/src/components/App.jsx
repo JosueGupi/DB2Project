@@ -16,7 +16,8 @@ import {AdminCProduct} from './adminsProductCRUD/AdminCProduct'
 import {AdminUProduct} from './adminsProductCRUD/AdminUProduct'
 import {AdminRProduct} from './adminsProductCRUD/AdminRProduct'
 import {AdminDProduct} from './adminsProductCRUD/AdminDProduct'
-
+import {TicketMenu} from './adminsTicket/TicketMenu'
+import {TicketComment} from './adminsTicket/TicketComments'
 import {CreateAccountPage} from './createAccount/CreateAccountPage';
 import {CatalogPage} from './catalog/CatalogPage';
 import {CheckoutPage} from './checkout/CheckoutPage';
@@ -45,7 +46,8 @@ import '../App.css';
                     <Route exact path = "/register" element = {<CreateAccountPage/>}/>
                     <Route exact path = "/catalog" element = {<CatalogPage/>}/>
                     <Route exact path = "/checkout" element = {<CheckoutPage/>}/>
-
+                    <Route exact path = "/tickets" element = {<TicketMenu/>}/>
+                    <Route exact path = "/comments" element = {<TicketComment/>}/>
                 </Routes>
             </div>
         </Router>
