@@ -7,8 +7,11 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import './Catalog.styles.scss';
 import {useLocation} from  "react-router-dom";
+import {useNavigate} from 'react-router-dom'
 
 export function CatalogPage(){
+
+    let navigate = useNavigate();
 
     const {state} = useLocation(); // get params 
 
@@ -16,11 +19,20 @@ export function CatalogPage(){
 
     useEffect(() => {
         // GET request using axios inside useEffect React hook
-        axios.post('http://localhost:3001/catalog/get_catalog')
+        axios.post('http://localhost:3001/catalog/get_catalog') //{idUser:state.idUser, location:state.location}
             .then(response => setArrayCard(response.data.recordset))
     
     // empty dependency array means this effect will only run once 
     }, []);
+
+    const action = () => {
+        try {
+            console.log("open shopping cart of " + state.idUser)      
+            navigate('/checkout',{state:{idUser:state.idUser,username:state.username }});
+        } catch (err) {
+            alert("Error opening to shopping cart")
+        }
+    }
 
     return (
         <Fragment>
@@ -40,15 +52,11 @@ export function CatalogPage(){
                         </li>
                     </ul>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                        <a>User {state.username} </a>
+                        <li>
+                        <a>User {state.username} {state.location} </a>
                         </li>
                     </ul>
-                    <span class="navbar-text">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/checkout">Cart</a>
-                        </li>
-                    </span>
+                    <button type="button" className="btn btn-warning" onClick={action}> Shopping Cart </button>
                     </div>
                 </div>
 

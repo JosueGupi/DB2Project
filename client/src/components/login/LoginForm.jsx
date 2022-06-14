@@ -14,11 +14,12 @@ export function LoginForm(){
             console.log(response)
             const user = response.data.recordset[0].username;
             const idUser = response.data.recordset[0].idUser;
+            const location = response.data.recordset[0].Location;
 
             if(response.data.recordset[0].administrator == 1){
                 navigate('/admin',{state:{username:user}})
             }else{
-                navigate('/catalog',{state:{username:user,idUser:idUser}})
+                navigate('/catalog',{state:{username:user,idUser:idUser,location:location}})
             }
             
 
