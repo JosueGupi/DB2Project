@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 
 import './checkout.styles.scss';
 
-export function CheckoutItem ({ cartItem, clearItem, addItem, removeItem }) {
-  const { name, imageUrl, price, quantity } = cartItem;
+export function CheckoutItem ({ cartItem, quantity, removeItem }) {
+  const { name, imageUrl, price } = cartItem;
   return (
     <Fragment>
       <div className="checkout-item">

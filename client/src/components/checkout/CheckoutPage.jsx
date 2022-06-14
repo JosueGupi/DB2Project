@@ -5,6 +5,7 @@ import {useLocation} from  "react-router-dom";
 import {useNavigate} from 'react-router-dom'
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { CheckoutItem } from './checkoutItem';
 import axios from 'axios';
 
 export function CheckoutPage(){
@@ -25,10 +26,16 @@ export function CheckoutPage(){
     // empty dependency array means this effect will only run once 
     }, []);
 
-    arrShoppCart.map((i) =>{
+    const mediaTypes = arrShoppCart.map((i) =>{
         console.log("Name: " + i.name + " idWhisky: " + i.idWhisky)    
     })
+    .filter((idWhisky, index, array) => array.indexOf(idWhisky) === index);
+  
 
+    const TOTAL = () =>{
+        var t = 0;
+
+    }
     return (
         <Fragment>
            <div style={{ backgroundImage: 'url(require("./Images/LoginBackgroundJ.jpg"))' }} className="checkout-page" >
@@ -54,14 +61,13 @@ export function CheckoutPage(){
                         <span>Remove</span>
                     </div>
                 </div>
-                {/*
-                {cartItems.map(cartItem =>
-                    (<CheckoutItem key={cartItem.id} cartItem={cartItem}/>)
+                {arrShoppCart.map(cartItem =>
+                    (<CheckoutItem key={cartItem.id} cartItem={cartItem} quantity={1}/>)
                     )
-                }*/}
+                }
                 <div className='total'>
                     <button onClick={action} class="custom-button"> BUY </button>
-                    <span>TOTAL: $0</span>
+                    <span>TOTAL: ${TOTAL}</span>
                 </div>
             </div>
         </Fragment>
