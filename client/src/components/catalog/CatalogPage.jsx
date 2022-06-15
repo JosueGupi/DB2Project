@@ -73,7 +73,7 @@ export function CatalogPage(){
                                     arrayCard.map((i) =>{
                                     return(
                                         <Card card = {{name:i.name[0], aged:i.aged, whiskyType:i.name[1], 
-                                                       supplier:i.name[2], subscription:i.name[3], idUser:state.idUser}}/>
+                                                       supplier:i.name[2], subscription:i.name[3], price:i.name[4], idUser:state.idUser}}/>
                                     )})
                                 } 
                             </div>

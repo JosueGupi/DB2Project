@@ -14,10 +14,6 @@ export function CheckoutPage(){
     const {state} = useLocation(); // get params 
     const [arrShoppCart, setArrShoppCart] = useState([]) //hook use state
 
-    const action = () => {
-        console.log("works");
-    }
-
     useEffect(() => {
         // GET request using axios inside useEffect React hook
         axios.post('http://localhost:3001/catalog/getShoppingCart',{idUser:state.idUser})
@@ -26,15 +22,30 @@ export function CheckoutPage(){
     // empty dependency array means this effect will only run once 
     }, []);
 
-    const mediaTypes = arrShoppCart.map((i) =>{
+    arrShoppCart.map((i) =>{
         console.log("Name: " + i.name + " idWhisky: " + i.idWhisky)    
     })
-    .filter((idWhisky, index, array) => array.indexOf(idWhisky) === index);
-  
+    const uniqueIds = [];
 
-    const TOTAL = () =>{
-        var t = 0;
 
+    var whiskeyUnique = arrShoppCart.filter(element => {
+        const isDuplicate = uniqueIds.includes(element.idWhisky);
+
+        if (!isDuplicate) {
+        uniqueIds.push(element.idWhisky);
+
+        return true;
+        }
+
+        return false;
+    });
+    var quantity = (id) =>{
+        return(arrShoppCart.filter(item => item.idWhisky === id ).length)
+    }
+    const action = () => {
+        whiskeyUnique.map((i) =>{
+            console.log("Name: " + i.name + " idWhisky: " + i.idWhisky + " Quantity: " + quantity(i.idWhisky))    
+        })
     }
     return (
         <Fragment>
@@ -61,13 +72,13 @@ export function CheckoutPage(){
                         <span>Remove</span>
                     </div>
                 </div>
-                {arrShoppCart.map(cartItem =>
-                    (<CheckoutItem key={cartItem.id} cartItem={cartItem} quantity={1}/>)
+                {whiskeyUnique.map(cartItem =>
+                    (<CheckoutItem key={cartItem.id} cartItem={cartItem} quantity = {quantity (cartItem.idWhisky)}/>)
                     )
                 }
                 <div className='total'>
                     <button onClick={action} class="custom-button"> BUY </button>
-                    <span>TOTAL: ${TOTAL}</span>
+                    <span>TOTAL: $0</span>
                 </div>
             </div>
         </Fragment>
