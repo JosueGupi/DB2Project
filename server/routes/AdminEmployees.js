@@ -121,4 +121,95 @@ app.post('/updateEmployee', function (req, res) {
   // query to the database and get the records
 });
 
+
+
+app.post('/getRatings', function (req, res) {
+    
+  var mysql      = require('mysql2');
+  var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'Pi9Vare1Xu',
+  database : 'employeedata',
+  });
+
+  // connect to your database
+  connection.connect();
+  
+      
+
+      // create Request object
+  
+  
+  connection.query("CALL SP_GetRatings_J ()", function (error, results) {
+      if (error) throw error;
+      console.log(results)
+      res.json(results);
+    });
+     
+  connection.end();
+  // query to the database and get the records
+});
+
+
+
+app.post('/getComments', function (req, res) {
+    
+  var mysql      = require('mysql2');
+  var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'Pi9Vare1Xu',
+  database : 'employeedata',
+  });
+
+  // connect to your database
+  connection.connect();
+  const idTicket = req.body.idTicket
+      
+
+      // create Request object
+  console.log(idTicket)
+  
+  connection.query("CALL SP_GetConversation_J ("+idTicket+")", function (error, results) {
+      if (error) throw error;
+      console.log(results)
+      res.json(results);
+    });
+     
+  connection.end();
+  // query to the database and get the records
+});
+
+app.post('/addComments', function (req, res) {
+    
+  var mysql      = require('mysql2');
+  var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'Pi9Vare1Xu',
+  database : 'employeedata',
+  });
+
+  // connect to your database
+  connection.connect();
+  const idTicket = req.body.idTicket
+  const user = req.body.user
+  const comment = req.body.comment
+
+      // create Request object
+  console.log(req.body)
+  
+  connection.query("CALL SP_AddConversation_J ("+idTicket+",'"+user+"','"+comment+"')", function (error, results) {
+      if (error) throw error;
+      console.log(results)
+      res.json(results);
+    });
+     
+  connection.end();
+  // query to the database and get the records
+});
+
+
+
 module.exports = app;
