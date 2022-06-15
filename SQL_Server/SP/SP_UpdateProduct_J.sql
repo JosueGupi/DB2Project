@@ -9,7 +9,7 @@ ALTER PROCEDURE SP_UpdateProduct_J
     @name VARCHAR(32),
     @aged INT,
     @whiskytype VARCHAR(32),
-    @file VARCHAR(MAX),
+    @file VARBINARY(MAX),
     @price INT,
     @whiskyID INT
 AS   
@@ -44,6 +44,7 @@ DECLARE @supplierID INT
                 ,idSubscription = CASE WHEN @sub = 0 THEN idSubscription ELSE @sub END
                 ,[name] = ISNULL(@name,[name])
                 ,aged = CASE WHEN @aged = 0 THEN aged ELSE @aged END
+                ,[image] = ISNULL(@file,[image])
             WHERE idWhisky = @whiskyID;
 
             UPDATE DB_USA.dbo.InventoryA
@@ -93,6 +94,7 @@ DECLARE @supplierID INT
                 ,idSubscription = CASE WHEN @sub = 0 THEN idSubscription ELSE @sub END
                 ,[name] = ISNULL(@name,[name])
                 ,aged = CASE WHEN @aged = 0 THEN aged ELSE @aged END
+                ,[image] = ISNULL(@file,[image])
             WHERE idWhisky = @whiskyID;
 
             UPDATE DB_Ireland.dbo.InventoryA
@@ -140,6 +142,7 @@ DECLARE @supplierID INT
                 ,idSubscription = CASE WHEN @sub = 0 THEN idSubscription ELSE @sub END
                 ,[name] = ISNULL(@name,[name])
                 ,aged = CASE WHEN @aged = 0 THEN aged ELSE @aged END
+                ,[image] = ISNULL(@file,[image])
             WHERE idWhisky = @whiskyID;
 
             UPDATE DB_Scotland.dbo.InventoryA

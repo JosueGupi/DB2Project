@@ -1,6 +1,6 @@
 USE DB_USA;  
 GO  
-ALTER PROCEDURE SP_CreateProduct_J   
+CREATE PROCEDURE SP_CreateProduct_J   
     @country varchar(32),   
     @storeNumber varchar(32),
     @qty INT,
@@ -9,7 +9,7 @@ ALTER PROCEDURE SP_CreateProduct_J
     @name VARCHAR(32),
     @aged INT,
     @whiskytype VARCHAR(32),
-    @file VARCHAR(MAX),
+    @file VARBINARY(MAX),
     @price INT
 AS   
 BEGIN
@@ -38,8 +38,8 @@ DECLARE @supplierID INT
                 SELECT @whiskyTypeID = idWhiskyType FROM DB_USA.dbo.WhiskyType WHERE [name] = @whiskytype;
             END
             
-            INSERT INTO DB_USA.dbo.Whisky (idWhiskyType,idSupplier,idSubscription,[name],aged)
-            SELECT @whiskyTypeID,@supplierID,@sub,@name,@aged WHERE NOT EXISTS (SELECT idWhisky FROM  DB_USA.dbo.Whisky WHERE [name] = @name);
+            INSERT INTO DB_USA.dbo.Whisky (idWhiskyType,idSupplier,idSubscription,[name],aged,[image])
+            SELECT @whiskyTypeID,@supplierID,@sub,@name,@aged,@file WHERE NOT EXISTS (SELECT idWhisky FROM  DB_USA.dbo.Whisky WHERE [name] = @name);
 
 
             SELECT @whiskyID = idWhisky FROM  DB_USA.dbo.Whisky WHERE [name] = @name;
@@ -71,8 +71,8 @@ DECLARE @supplierID INT
                 SELECT @whiskyTypeID = idWhiskyType FROM DB_Ireland.dbo.WhiskyType WHERE [name] = @whiskytype;
             END
             
-            INSERT INTO DB_Ireland.dbo.Whisky (idWhiskyType,idSupplier,idSubscription,[name],aged)
-            SELECT @whiskyTypeID,@supplierID,@sub,@name,@aged WHERE NOT EXISTS (SELECT idWhisky FROM  DB_Ireland.dbo.Whisky WHERE [name] = @name);
+            INSERT INTO DB_Ireland.dbo.Whisky (idWhiskyType,idSupplier,idSubscription,[name],aged,[image])
+            SELECT @whiskyTypeID,@supplierID,@sub,@name,@aged,@file WHERE NOT EXISTS (SELECT idWhisky FROM  DB_Ireland.dbo.Whisky WHERE [name] = @name);
 
 
             SELECT @whiskyID = idWhisky FROM  DB_Ireland.dbo.Whisky WHERE [name] = @name;
@@ -104,8 +104,8 @@ DECLARE @supplierID INT
                 SELECT @whiskyTypeID = idWhiskyType FROM DB_Scotland.dbo.WhiskyType WHERE [name] = @whiskytype;
             END
             
-            INSERT INTO DB_Scotland.dbo.Whisky (idWhiskyType,idSupplier,idSubscription,[name],aged)
-            SELECT @whiskyTypeID,@supplierID,@sub,@name,@aged WHERE NOT EXISTS (SELECT idWhisky FROM  DB_Scotland.dbo.Whisky WHERE [name] = @name);
+            INSERT INTO DB_Scotland.dbo.Whisky (idWhiskyType,idSupplier,idSubscription,[name],aged,[image])
+            SELECT @whiskyTypeID,@supplierID,@sub,@name,@aged,@file WHERE NOT EXISTS (SELECT idWhisky FROM  DB_Scotland.dbo.Whisky WHERE [name] = @name);
 
 
             SELECT @whiskyID = idWhisky FROM  DB_Scotland.dbo.Whisky WHERE [name] = @name;

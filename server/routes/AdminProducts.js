@@ -34,7 +34,7 @@ app.post('/createProduct', function (req, res) {
         const name = req.body.name
         const aged = req.body.aged
         const type = req.body.type
-        const img = req.body.file
+        const img = "(SELECT BulkColumn FROM OPENROWSET(BULK 'C:\""+req.body.file+"',SINGLE_BLOB) AS Imagen)"
         const price = req.body.price
 
         
@@ -216,7 +216,7 @@ app.post('/updateProduct', function (req, res) {
         const price = req.body.price
         const whiskyId = req.body.wID
         const type = req.body.type == '' ? 'NULL' : "'"+req.body.type+"'"
-        const file = req.body.file == '' ? 'NULL' : "'"+req.body.file+"'"
+        const file = req.body.file == '' ? 'NULL' : "(SELECT BulkColumn FROM OPENROWSET(BULK 'C:\""+req.body.file+"',SINGLE_BLOB) AS Imagen)"
         
         console.log(req.body)
         // query to the database and get the records
