@@ -6,8 +6,8 @@ app.post('/createProduct', function (req, res) {
 
     // config for your database
     var config = {
-        user: 'sa',
-        password: '(#Pi9Vare1Xu!#)',
+        user: 'Geisel',
+        password: 'Rosado1010',
         server: 'localhost',
         database: 'DB_USA',
         port:1433,
@@ -34,18 +34,17 @@ app.post('/createProduct', function (req, res) {
         const name = req.body.name
         const aged = req.body.aged
         const type = req.body.type
-        const img = "(SELECT BulkColumn FROM OPENROWSET(BULK 'C:\""+req.body.file+"',SINGLE_BLOB) AS Imagen)"
+        const img = "DECLARE @img VARBINARY(MAX) = (SELECT BulkColumn FROM OPENROWSET(BULK 'C:\\"+req.body.file+"',SINGLE_BLOB) AS Imagen);"
         const price = req.body.price
-
+        const q = img + "EXEC SP_CreateProduct_J '"+country+"','"+store+"',"+qty+",'"+supplier+"',"+sub+",'"+name+"',"+aged+",'"+type+"',@img,"+price
         
         // query to the database and get the records
         
-        request.query("EXEC SP_CreateProduct_J '"+country+"','"+store+"',"+qty+",'"+supplier+"',"+sub+",'"+name+"',"+aged+",'"+type+"','"+img+"',"+price, function (err, recordset) {
+        request.query(q, function (err, recordset) {
 
             if (err) console.log(err)
 
             // send records as a response
-            console.log(recordset.recordsets[1])
             var nodemailer = require('nodemailer');
             const transporter = nodemailer.createTransport({
               host: 'smtp.ethereal.email',
@@ -96,8 +95,8 @@ app.post('/deleteProduct', function (req, res) {
 
     // config for your database
     var config = {
-        user: 'sa',
-        password: '(#Pi9Vare1Xu!#)',
+        user: 'Geisel',
+        password: 'Rosado1010',
         server: 'localhost',
         database: 'DB_USA',
         port:1433,
@@ -142,8 +141,8 @@ app.post('/readProduct', function (req, res) {
 
     // config for your database
     var config = {
-        user: 'sa',
-        password: '(#Pi9Vare1Xu!#)',
+        user: 'Geisel',
+        password: 'Rosado1010',
         server: 'localhost',
         database: 'DB_USA',
         port:1433,
@@ -174,7 +173,6 @@ app.post('/readProduct', function (req, res) {
             if (err) console.log(err)
 
             // send records as a response
-            console.log(recordset)
             res.json(recordset);
 
         });
@@ -186,8 +184,8 @@ app.post('/updateProduct', function (req, res) {
 
     // config for your database
     var config = {
-        user: 'sa',
-        password: '(#Pi9Vare1Xu!#)',
+        user: 'Geisel',
+        password: 'Rosado1010',
         server: 'localhost',
         database: 'DB_USA',
         port:1433,
@@ -216,12 +214,12 @@ app.post('/updateProduct', function (req, res) {
         const price = req.body.price
         const whiskyId = req.body.wID
         const type = req.body.type == '' ? 'NULL' : "'"+req.body.type+"'"
-        const file = req.body.file == '' ? 'NULL' : "(SELECT BulkColumn FROM OPENROWSET(BULK 'C:\""+req.body.file+"',SINGLE_BLOB) AS Imagen)"
-        
+        const file = req.body.file == '' ? 'NULL' : "DECLARE @img VARBINARY(MAX) = (SELECT BulkColumn FROM OPENROWSET(BULK 'C:\\"+req.body.file+"',SINGLE_BLOB) AS Imagen);"
+        const q = file + "EXEC SP_UpdateProduct_J '"+country+"','"+store+"',"+qty+","+supplier+","+sub+","+name+","+aged+","+type+",@img,"+price+","+whiskyId
         console.log(req.body)
         // query to the database and get the records
         
-        request.query("EXEC SP_UpdateProduct_J '"+country+"','"+store+"',"+qty+","+supplier+","+sub+","+name+","+aged+","+type+","+file+","+price+","+whiskyId, function (err, recordset) {
+        request.query(q, function (err, recordset) {
 
             if (err) console.log(err)
 

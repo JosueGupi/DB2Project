@@ -24,9 +24,9 @@ DECLARE @whiskyID INT
             INNER JOIN DB_USA.dbo.Supplier S ON W.idSupplier = S.idSupplier
             INNER JOIN DB_USA.dbo.Subscription SB ON SB.idSubscription = W.idSubscription
             WHERE W.name = @name
-            for json auto
+            for json path
         )
-         ) with([aged] int,[Type] varchar(64),[Supplier] varchar(64),[Subscription] varchar(64), [imagen] varchar(max))
+         ) with([aged] int,[Type] varchar(16),[Supplier] varchar(16),[Subscription] varchar(16), [image] varchar(max))
 
         END
 
@@ -48,9 +48,9 @@ DECLARE @whiskyID INT
             INNER JOIN DB_Ireland.dbo.Supplier S ON W.idSupplier = S.idSupplier
             INNER JOIN DB_Ireland.dbo.Subscription SB ON SB.idSubscription = W.idSubscription
             WHERE W.name = @name
-            for json auto
+            for json path
         )
-         ) with([aged] int,[Type] varchar(64),[Supplier] varchar(64),[Subscription] varchar(64), [imagen] varchar(max))
+         ) with([aged] int,[Type] varchar(64),[Supplier] varchar(64),[Subscription] varchar(64), [image] varchar(max))
         END
 
 
@@ -72,25 +72,19 @@ DECLARE @whiskyID INT
             INNER JOIN DB_Scotland.dbo.Supplier S ON W.idSupplier = S.idSupplier
             INNER JOIN DB_Scotland.dbo.Subscription SB ON SB.idSubscription = W.idSubscription
             WHERE W.name = @name
-            for json auto
+            for json path
         )
-         ) with([aged] int,[Type] varchar(64),[Supplier] varchar(64),[Subscription] varchar(64), [imagen] varchar(max))
+         ) with([aged] int,[Type] varchar(64),[Supplier] varchar(64),[Subscription] varchar(64), [image] varchar(max))
         END
         
     END TRY
 
     BEGIN CATCH
-        INSERT INTO DB_USA.dbo.ERROR(
-            idError
-            ,[DESCRIPTION]
-        )VALUES(
-            1
-            ,ERROR_MESSAGE()
-        )
+        PRINT 'ERROR'
     END CATCH
     SET NOCOUNT OFF;
 END 
-
+/*
 EXEC SP_ReadProduct_J 'USA', 'Glenfiddich'
 
 SELECT 
@@ -99,3 +93,5 @@ SELECT
             INNER JOIN DB_USA.dbo.WhiskyType WT ON W.idWhiskyType = WT.idWhiskyType
             INNER JOIN DB_USA.dbo.Supplier S ON W.idSupplier = S.idSupplier
             INNER JOIN DB_USA.dbo.Subscription SB ON SB.idSubscription = W.idSubscription
+
+			*/

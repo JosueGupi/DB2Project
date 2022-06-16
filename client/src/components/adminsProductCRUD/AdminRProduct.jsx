@@ -14,6 +14,7 @@ export  function AdminRProduct() {
     const [type, setType] = useState('');
     const [supplier, setSupplier] = useState('');
     const [subscription, setSubscription] = useState('');
+    const [image, setImage] = useState('');
     
     
 
@@ -26,6 +27,7 @@ export  function AdminRProduct() {
             setType(response.data.recordset[0].Type)
             setSupplier(response.data.recordset[0].Supplier)
             setSubscription(response.data.recordset[0].Subscription)
+            setImage("data:image/png;base64," + response.data.recordset[0].image)
             
 
         } catch (err) {
@@ -86,7 +88,7 @@ export  function AdminRProduct() {
                     <label  className="form-label" style={{color:'White'}}>Subscription</label>
                     <input type="text" className="form-control" value={subscription} disable/>
                 </div>
-                
+                <img src={image}width="300" height="300"></img>                
                 <button type="button" className="btn btn-warning" onClick={routeAdmin}>Go Back</button>
             </header>
         </Fragment>

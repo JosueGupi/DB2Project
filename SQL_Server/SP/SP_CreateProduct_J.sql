@@ -1,6 +1,6 @@
 USE DB_USA;  
 GO  
-CREATE PROCEDURE SP_CreateProduct_J   
+ALTER PROCEDURE SP_CreateProduct_J   
     @country varchar(32),   
     @storeNumber varchar(32),
     @qty INT,
@@ -18,7 +18,7 @@ DECLARE @supplierID INT
     ,@whiskyID INT
     ,@typeID INT
     SET NOCOUNT ON; 
-    BEGIN TRY   
+   -- BEGIN TRY   
         IF (@country = 'USA')
         BEGIN
             SELECT @supplierID = idSupplier FROM DB_USA.dbo.Supplier WHERE [name] = @supplier;
@@ -37,11 +37,10 @@ DECLARE @supplierID INT
                 INSERT INTO DB_USA.dbo.WhiskyType([name])VALUES(@whiskytype);
                 SELECT @whiskyTypeID = idWhiskyType FROM DB_USA.dbo.WhiskyType WHERE [name] = @whiskytype;
             END
-            
+           
             INSERT INTO DB_USA.dbo.Whisky (idWhiskyType,idSupplier,idSubscription,[name],aged,[image])
-            SELECT @whiskyTypeID,@supplierID,@sub,@name,@aged,@file WHERE NOT EXISTS (SELECT idWhisky FROM  DB_USA.dbo.Whisky WHERE [name] = @name);
-
-
+			SELECT @whiskyTypeID,@supplierID,@sub,@name,@aged,@file WHERE NOT EXISTS (SELECT idWhisky FROM  DB_USA.dbo.Whisky WHERE [name] = @name);
+		
             SELECT @whiskyID = idWhisky FROM  DB_USA.dbo.Whisky WHERE [name] = @name;
 
             INSERT INTO DB_USA.dbo.InventoryA(idWhisky, quantity,price)
@@ -128,20 +127,14 @@ DECLARE @supplierID INT
 
     
         
-    END TRY
+   /* END TRY
 
     BEGIN CATCH
-        INSERT INTO DB_USA.dbo.ERROR(
-            idError
-            ,[DESCRIPTION]
-        )VALUES(
-            1
-            ,ERROR_MESSAGE()
-        )
+        PRINT 'ERROR'
     END CATCH
-    SET NOCOUNT OFF;
+    SET NOCOUNT OFF;*/
 END 
-
+/*
 SELECT * FROM DB_USA.dbo.InventoryA
 SELECT * FROM DB_USA.dbo.InventoryB
 SELECT * FROM DB_USA.dbo.InventoryC
@@ -173,4 +166,4 @@ UPDATE DB_Scotland.dbo.Users
 SET email = 'josuegupi@gmail.com'
 WHERE idUser = 3
 
-INSERT INTO DB_USA.dbo.Users VALUES(1,0,'Josue','Gutierrez','Gupi','123','josuegupi64@gmail.com')
+INSERT INTO DB_USA.dbo.Users VALUES(1,0,'Josue','Gutierrez','Gupi','123','josuegupi64@gmail.com')*/

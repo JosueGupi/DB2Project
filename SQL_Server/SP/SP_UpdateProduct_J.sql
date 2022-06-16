@@ -170,18 +170,12 @@ DECLARE @supplierID INT
     END TRY
 
     BEGIN CATCH
-        INSERT INTO DB_USA.dbo.ERROR(
-            idError
-            ,[DESCRIPTION]
-        )VALUES(
-            1
-            ,ERROR_MESSAGE()
-        )
+        PRINT 'ERROR'
     END CATCH
     SET NOCOUNT OFF;
 END 
 
-SELECT * FROM DB_USA.dbo.InventoryA
+/*SELECT * FROM DB_USA.dbo.InventoryA
 SELECT * FROM DB_USA.dbo.InventoryB
 SELECT * FROM DB_USA.dbo.InventoryC
 SELECT * FROM DB_USA.dbo.Supplier
@@ -204,4 +198,4 @@ SELECT * FROM DB_Ireland.dbo.Whisky
 
 SELECT * FROM DB_USA.dbo.ERROR
 
-EXEC SP_UpdateProduct_J 'USA','Store A',0,'LuisSA',4,NULL,1,'New','asd',15,1
+EXEC SP_UpdateProduct_J 'USA','Store A',0,'LuisSA',4,NULL,1,'New','asd',15,1*/
