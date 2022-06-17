@@ -26,6 +26,16 @@ export function CheckoutPage(){
     let numberStore = -1
     let distance = 0
 
+    const actionReview = () => {
+        let path = '/createReview'; 
+        navigate(path,{state:{idUser:state.idUser,username:state.username,location:state.location}});
+    }
+ 
+    const actionSuggestion = () =>{ 
+        let path = '/'; 
+        navigate(path,{state:{idUser:state.idUser,username:state.username,location:state.location}});
+    }
+
     const actionBuy = async() => {
         
         try {
@@ -93,12 +103,7 @@ export function CheckoutPage(){
     var quantity = (id) =>{
         return(arrShoppCart.filter(item => item.idWhisky === id ).length)
     }
-    const action = () => {
-        whiskeyUnique.map((i) =>{
-            console.log("Name: " + i.name + " idWhisky: " + i.idWhisky + " Quantity: " + quantity(i.idWhisky))    
-        })
-    }
-
+    
     const onSubmit = async (data) => {
         try {
             data.latq = lat;
@@ -209,6 +214,14 @@ export function CheckoutPage(){
 
                 <div className='total'>
                     <button onClick={actionBuy} class="custom-button"> BUY </button>
+                </div>
+                <br></br><br></br><br></br>
+                <br></br><br></br><br></br>
+                <div className="mb-3">
+                    <label htmlFor="text" className="form-label" style={{color:'Black'}}> ¡Help us with a review or suggestion!</label> 
+                    <button onClick={actionReview} class="custom-button"> ENTER REVIEW </button>
+                    <br></br>
+                    <button onClick={actionSuggestion} class="custom-button"> ENTER SUGGESTION </button>
                 </div>
                 <br></br><br></br><br></br>
                 <br></br><br></br><br></br>
