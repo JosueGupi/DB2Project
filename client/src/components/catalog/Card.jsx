@@ -15,7 +15,7 @@ export function Card({card}){
 
     const action = () => {
         try {
-            const response = axios.post('http://localhost:3001/catalog/addShoppingCart',{name:card.name,idUser:card.idUser})
+            const response = axios.post('http://localhost:3001/catalog/addShoppingCart',{name:card.name,idUser:card.idUser,location:card.location})
             console.log("works add");
             alert("Added to shopping cart")         
         } catch (err) {

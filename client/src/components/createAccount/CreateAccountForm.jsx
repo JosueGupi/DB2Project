@@ -66,7 +66,7 @@ export function CreateAccountForm(){
                         <option select value="No tier">Not Applicable</option>
                         <option value="Short Glass">Tier Short Glass</option>
                         <option value="Gleincairn">Tier Gleincairn</option>
-                        <option value="Distiller">Tier Master Distiller</option>
+                        <option value="Master Distiller">Tier Master Distiller</option>
                     </select>
                 </div>
 

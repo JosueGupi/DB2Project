@@ -19,7 +19,7 @@ export function CatalogPage(){
 
     useEffect(() => {
         // GET request using axios inside useEffect React hook
-        axios.post('http://localhost:3001/catalog/get_catalog') //{idUser:state.idUser, location:state.location}
+        axios.post('http://localhost:3001/catalog/get_catalog',{idUser:state.idUser, location:state.location}) //
             .then(response => setArrayCard(response.data.recordset))
     
     // empty dependency array means this effect will only run once 
@@ -28,7 +28,7 @@ export function CatalogPage(){
     const action = () => {
         try {
             console.log("open shopping cart of " + state.idUser)      
-            navigate('/checkout',{state:{idUser:state.idUser,username:state.username }});
+            navigate('/checkout',{state:{idUser:state.idUser,username:state.username,location:state.location}});
         } catch (err) {
             alert("Error opening to shopping cart")
         }
@@ -73,7 +73,8 @@ export function CatalogPage(){
                                     arrayCard.map((i) =>{
                                     return(
                                         <Card card = {{name:i.name[0], aged:i.aged, whiskyType:i.name[1], 
-                                                       supplier:i.name[2], subscription:i.name[3], price:i.name[4], idUser:state.idUser}}/>
+                                                       supplier:i.name[2], subscription:i.name[3], price:i.name[4], idUser:state.idUser,
+                                                       location:state.location}}/>
                                     )})
                                 } 
                             </div>

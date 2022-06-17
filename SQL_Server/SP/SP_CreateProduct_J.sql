@@ -18,7 +18,7 @@ DECLARE @supplierID INT
     ,@whiskyID INT
     ,@typeID INT
     SET NOCOUNT ON; 
-   -- BEGIN TRY   
+    BEGIN TRY   
         IF (@country = 'USA')
         BEGIN
             SELECT @supplierID = idSupplier FROM DB_USA.dbo.Supplier WHERE [name] = @supplier;
@@ -127,12 +127,12 @@ DECLARE @supplierID INT
 
     
         
-   /* END TRY
+    END TRY
 
     BEGIN CATCH
         PRINT 'ERROR'
     END CATCH
-    SET NOCOUNT OFF;*/
+    SET NOCOUNT OFF;
 END 
 /*
 SELECT * FROM DB_USA.dbo.InventoryA

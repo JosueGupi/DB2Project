@@ -1,22 +1,40 @@
 USE DB_USA
 
 GO
-CREATE PROCEDURE SP_SelectShoppingCart_G @idUser INT
+ALTER PROCEDURE SP_SelectShoppingCart_G @idUser INT, @country VARCHAR(16)
 AS
 BEGIN
-	BEGIN TRY
-	-- get location user .....
-	SELECT S.idWhisky, W.name--, I.price
-	FROM DB_USA.dbo.ShoppingCart AS S 
-	INNER JOIN Whisky AS W
-		ON S.idWhisky = W.idWhisky
-	--INNER JOIN InventoryA AS I -- GET LOCATION
-	--	ON S.idWhisky = I.idWhisky
-	WHERE idUser = @idUser
-	AND bought = 0
-
-	END TRY
-	BEGIN CATCH
-		SELECT 'Error'
-	END CATCH
+	IF @country = 'USA'
+	BEGIN 
+		SELECT S.idWhisky, W.name, I.price, idShoppingCart, S.quantity
+		FROM DB_USA.dbo.ShoppingCart AS S 
+		INNER JOIN DB_USA.dbo.Whisky AS W
+			ON S.idWhisky = W.idWhisky
+		INNER JOIN DB_USA.dbo.InventoryA AS I
+			ON S.idWhisky = I.idWhisky
+		WHERE idUser = @idUser
+		AND bought = 0
+	END 
+	IF @country = 'Scotland'
+	BEGIN 
+		SELECT S.idWhisky, W.name, I.price, idShoppingCart, S.quantity
+		FROM DB_Scotland.dbo.ShoppingCart AS S 
+		INNER JOIN DB_Scotland.dbo.Whisky AS W
+			ON S.idWhisky = W.idWhisky
+		INNER JOIN DB_Scotland.dbo.InventoryA AS I
+			ON S.idWhisky = I.idWhisky
+		WHERE idUser = @idUser
+		AND bought = 0
+	END 
+	IF @country = 'Ireland'
+	BEGIN 
+		SELECT S.idWhisky, W.name, I.price, idShoppingCart, S.quantity
+		FROM DB_Ireland.dbo.ShoppingCart AS S 
+		INNER JOIN DB_Ireland.dbo.Whisky AS W
+			ON S.idWhisky = W.idWhisky
+		INNER JOIN DB_Ireland.dbo.InventoryA AS I
+			ON S.idWhisky = I.idWhisky
+		WHERE idUser = @idUser
+		AND bought = 0
+	END 
 END

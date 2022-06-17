@@ -27,8 +27,11 @@ app.post('/get_catalog', function (req, res) {
       // create Request object
       var request = new sql.Request();
 
+      const location = req.body.location
+      const idUser = req.body.idUser
+
       //query to the database and get the records
-      request.query("EXEC SP_SelectCatalog_G", function (err, recordset) {
+      request.query("EXEC SP_SelectCatalog_G '"+idUser+"','"+location+"'", function (err, recordset) {
 
           if (err) console.log(err)
           // send records as a response 
@@ -66,9 +69,10 @@ app.post('/addShoppingCart', function (req, res) {
 
       const name = req.body.name
       const idUser = req.body.idUser
+      const location = req.body.location
 
       //query to the database and get the records
-      request.query("EXEC SP_AddShoppingCart_G '"+name+"','"+idUser+"'", function (err, recordset) {
+      request.query("EXEC SP_AddShoppingCart_G '"+name+"','"+idUser+"','"+location+"'", function (err, recordset) {
 
           if (err) console.log(err)
           // send records as a response 
@@ -105,9 +109,10 @@ app.post('/getShoppingCart', function (req, res) {
       var request = new sql.Request();
 
       const idUser = req.body.idUser
+      const location = req.body.location
 
       //query to the database and get the records
-      request.query("EXEC SP_SelectShoppingCart_G '"+idUser+"'", function (err, recordset) {
+      request.query("EXEC SP_SelectShoppingCart_G '"+idUser+"','"+location+"'", function (err, recordset) {
 
           if (err) console.log(err)
           // send records as a response 
