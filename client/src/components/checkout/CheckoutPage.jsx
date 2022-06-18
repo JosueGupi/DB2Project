@@ -76,30 +76,18 @@ export function CheckoutPage(){
     arrShoppCart.map((i) =>{
         console.log("Name: " + i.name + " idWhisky: " + i.idWhisky)    
     })
-    const uniqueIds = [];
-
-
-    var whiskeyUnique = arrShoppCart.filter(element => {
-        const isDuplicate = uniqueIds.includes(element.idWhisky);
-
-        if (!isDuplicate) {
-        uniqueIds.push(element.idWhisky);
-
-        return true;
-        }
-
-        return false;
-    });
-    var quantity = (id) =>{
-        return(arrShoppCart.filter(item => item.idWhisky === id ).length)
+    
+    const quantityPrice = () =>{
+        var total = 0;
+        arrShoppCart.map(cartItem =>(total = (total + cartItem.price) * cartItem.quantity ))
+        console.log(total)
+        return(total)
     }
     const action = () => {
-        whiskeyUnique.map((i) =>{
-            console.log("Name: " + i.name + " idWhisky: " + i.idWhisky + " Quantity: " + quantity(i.idWhisky))    
-        })
+        console.log("hola")
     }
 
-    const onSubmit = async (data) => {
+    let onSubmit = async (data) => {
         try {
             data.latq = lat;
             data.lngq = lng;
@@ -145,13 +133,13 @@ export function CheckoutPage(){
                         <span>Remove</span>
                     </div>
                 </div>
-                {whiskeyUnique.map(cartItem =>
-                    (<CheckoutItem key={cartItem.id} cartItem={cartItem} quantity = {quantity (cartItem.idWhisky)}/>)
+                {arrShoppCart.map(cartItem =>
+                    (<CheckoutItem key={cartItem.id} cartItem={cartItem}/>)
                     )
                 }
 
                 <div className='total'>
-                    <span>TOTAL: $0</span>
+                    <span>TOTAL: ${quantityPrice()}</span>
                 </div>
                 {/* -------- Map -------------------- */}
 

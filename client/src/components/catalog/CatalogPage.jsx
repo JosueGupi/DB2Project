@@ -34,6 +34,15 @@ export function CatalogPage(){
         }
     }
 
+    const updateCatalog = () => {
+        try{
+            const response = axios.post('http://localhost:3001/catalog/get_catalog',{idUser:state.idUser, location:state.location})
+            .then(response => setArrayCard(response.data.recordset))
+            console.log(response)
+        } catch {
+            alert('Error updating catalog')
+        }
+    }
     return (
         <Fragment>
             <div class="container">
@@ -68,13 +77,13 @@ export function CatalogPage(){
                         <div className='form-div'>
                             <h1 className ="display-1" style={{color:'Gold'}}>Catalog</h1>
                             <br/>
-                            <div className="row row-cols-2 row-cols-md-2 g-4">
+                            <div className="row row-cols-4 row-cols-md-4 g-4">
                                 {
                                     arrayCard.map((i) =>{
                                     return(
                                         <Card card = {{name:i.name[0], aged:i.aged, whiskyType:i.name[1], 
                                                        supplier:i.name[2], subscription:i.name[3], price:i.name[4], idUser:state.idUser,
-                                                       location:state.location}}/>
+                                                       location:state.location, price:i.price, image:i.image}}/>
                                     )})
                                 } 
                             </div>

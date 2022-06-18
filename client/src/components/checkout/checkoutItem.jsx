@@ -1,9 +1,19 @@
 import React, { Fragment } from 'react';
+import {useLocation} from  "react-router-dom";
+import axios from 'axios';
 
 import './checkout.styles.scss';
 
-export function CheckoutItem ({ cartItem, quantity, removeItem }) {
-  const { idWhisky ,name, imageUrl, price } = cartItem;
+export function CheckoutItem ({ cartItem}) {
+  const { name, imageUrl, price, quantity } = cartItem;
+  const {state} = useLocation();
+  const remove = () => {
+    try {
+        const response = axios.post('http://localhost:3001/catalog/get_catalog',{idUser:state.idUser, location:state.location})       
+    } catch (err) {
+        alert("Error removing to shopping cart")
+    }
+  }
   return (
     <Fragment>
       <div className="checkout-item">
@@ -15,7 +25,7 @@ export function CheckoutItem ({ cartItem, quantity, removeItem }) {
           <span className="value">{quantity}</span>
         </span>
         <span className="price">{price}</span>
-        <button className="custom-button" >
+        <button onClick={remove} className="custom-button" >
           &#10005;
         </button>
       </div>

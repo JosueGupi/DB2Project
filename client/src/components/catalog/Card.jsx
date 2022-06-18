@@ -9,7 +9,7 @@ export function Card({card}){
     let navigate = useNavigate();
 
     const routeChange = () =>{ 
-        let path = '/'; 
+        let path = '/';
         navigate(path);
     }
 
@@ -29,8 +29,9 @@ export function Card({card}){
             <div className="card">
                     <div class="card-body">
                         <h5 className="card-title">{card.name}</h5>
-                        <img className= "image" src={"./Images/abeja.jpg"}/>
-                        <p className ="card-text">Aged {card.aged}</p>
+                        <img className= "image" src={card.image}/>
+                        <p className ="card-text">Aged: {card.aged}</p>
+                        <p className ="card-text">Price: {card.price}</p>
                         <button onClick={action} class="custom-button" >Add Cart</button>
                     </div>
                     </div>
