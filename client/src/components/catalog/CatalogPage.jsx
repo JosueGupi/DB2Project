@@ -43,6 +43,15 @@ export function CatalogPage(){
             alert('Error updating catalog')
         }
     }
+    const actionReview = () => {
+        try {
+            console.log("open reviews " + state.idUser)      
+            navigate('/getReviews',{state:{idUser:state.idUser,username:state.username,location:state.location}});
+        } catch (err) {
+            alert("Error opening reviews")
+        }
+    }
+
     return (
         <Fragment>
             <div class="container">
@@ -64,6 +73,9 @@ export function CatalogPage(){
                         <li>
                         <a>User {state.username} {state.location} </a>
                         </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <button type="button" className="btn btn-warning" onClick={actionReview}> Reviews </button>
                     </ul>
                     <button type="button" className="btn btn-warning" onClick={action}> Shopping Cart </button>
                     </div>

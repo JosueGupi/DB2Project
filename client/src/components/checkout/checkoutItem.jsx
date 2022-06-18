@@ -5,11 +5,11 @@ import axios from 'axios';
 import './checkout.styles.scss';
 
 export function CheckoutItem ({ cartItem}) {
-  const { name, imageUrl, price, quantity } = cartItem;
-  const {state} = useLocation();
+  const { name, image, price, quantity } = cartItem;
   const remove = () => {
     try {
-        const response = axios.post('http://localhost:3001/catalog/get_catalog',{idUser:state.idUser, location:state.location})       
+        const response = axios.post('http://localhost:3001/catalog/deleteShoppingCart',{name:cartItem.name, idUser:cartItem.idUser, location:cartItem.location})
+        setTimeout(() => {  window.location.reload(); }, 1000);      
     } catch (err) {
         alert("Error removing to shopping cart")
     }
@@ -18,7 +18,7 @@ export function CheckoutItem ({ cartItem}) {
     <Fragment>
       <div className="checkout-item">
         <div className="image-container">
-          <img src={imageUrl} alt="item" />
+          <img src={image} alt="item" />
         </div>
         <span className="name">{name}</span>
         <span className="quantity">

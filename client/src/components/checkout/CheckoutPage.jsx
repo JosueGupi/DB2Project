@@ -26,6 +26,16 @@ export function CheckoutPage(){
     let numberStore = -1
     let distance = 0
 
+    const actionReview = () => {
+        let path = '/createReview'; 
+        navigate(path,{state:{idUser:state.idUser,username:state.username,location:state.location}});
+    }
+ 
+    const actionSuggestion = () =>{ 
+        let path = '/'; 
+        navigate(path,{state:{idUser:state.idUser,username:state.username,location:state.location}});
+    }
+
     const actionBuy = async() => {
         
         try {
@@ -86,8 +96,8 @@ export function CheckoutPage(){
     const action = () => {
         console.log("hola")
     }
-
-    let onSubmit = async (data) => {
+    
+    const onSubmit = async (data) => {
         try {
             data.latq = lat;
             data.lngq = lng;
@@ -134,7 +144,7 @@ export function CheckoutPage(){
                     </div>
                 </div>
                 {arrShoppCart.map(cartItem =>
-                    (<CheckoutItem key={cartItem.id} cartItem={cartItem}/>)
+                    (<CheckoutItem key={cartItem.id} cartItem={{name:cartItem.name , quantity:cartItem.quantity , image:cartItem.image ,price:cartItem.price, idUser:state.idUser,location:state.location}}/>)
                     )
                 }
 
@@ -197,6 +207,14 @@ export function CheckoutPage(){
 
                 <div className='total'>
                     <button onClick={actionBuy} class="custom-button"> BUY </button>
+                </div>
+                <br></br><br></br><br></br>
+                <br></br><br></br><br></br>
+                <div className="mb-3">
+                    <label htmlFor="text" className="form-label" style={{color:'Black'}}> ¡Help us with a review or suggestion!</label> 
+                    <button onClick={actionReview} class="custom-button"> ENTER REVIEW </button>
+                    <br></br>
+                    <button onClick={actionSuggestion} class="custom-button"> ENTER SUGGESTION </button>
                 </div>
                 <br></br><br></br><br></br>
                 <br></br><br></br><br></br>

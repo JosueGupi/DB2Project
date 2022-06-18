@@ -21,6 +21,8 @@ import {TicketComment} from './adminsTicket/TicketComments'
 import {CreateAccountPage} from './createAccount/CreateAccountPage';
 import {CatalogPage} from './catalog/CatalogPage';
 import {CheckoutPage} from './checkout/CheckoutPage';
+import {CreateReviewPage} from './reviews/CreateReviewPage';
+import {GetReviewsPage} from './reviews/GetReviewsPage';
 
 import '../App.css';
 
@@ -48,6 +50,8 @@ import '../App.css';
                     <Route exact path = "/checkout" element = {<CheckoutPage/>}/>
                     <Route exact path = "/tickets" element = {<TicketMenu/>}/>
                     <Route exact path = "/comments" element = {<TicketComment/>}/>
+                    <Route exact path = "/createReview" element = {<CreateReviewPage/>}/>
+                    <Route exact path = "/getReviews" element = {<GetReviewsPage/>}/>
                 </Routes>
             </div>
         </Router>
