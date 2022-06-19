@@ -43,7 +43,8 @@ export  function AdminREmployee() {
     return (
         <Fragment>
             <header className="Admin-header">
-                
+            <div className='container mx-auto'>
+
                 <form onSubmit={handleSubmit(onSubmit)}>
                     
                     <div className="mb-3">
@@ -88,7 +89,10 @@ export  function AdminREmployee() {
                     <input type="text" className="form-control" value={localSalary} disable/>
                 </div>
                 
-                <button type="button" className="btn btn-warning" onClick={routeAdmin}>Go Back</button>
+                <center>
+                    <button type="button" className="btn btn-warning" onClick={routeAdmin}>Go Back</button>
+                </center>
+                </div>
             </header>
         </Fragment>
     )

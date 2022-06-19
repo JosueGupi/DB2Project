@@ -33,7 +33,7 @@ export  function AdminCEmployee() {
     return (
         <Fragment>
             <header className="Admin-header">
-                
+            <div className='container mx-auto'>
                 <form onSubmit={handleSubmit(onSubmit)}>
 
                     <div className="mb-3">    
@@ -79,9 +79,11 @@ export  function AdminCEmployee() {
                         <input type='submit' className='btn btn-warning' value='Create'/>
                     </center>
                 </form>
-                
-                <button type="button" className="btn btn-warning" onClick={routeAdmin}>Go Back</button>
-            </header>
+                <center>
+                    <button type="button" className="btn btn-warning" onClick={routeAdmin}>Go Back</button>
+                </center>
+                </div>
+                </header>
         </Fragment>
     )
 }

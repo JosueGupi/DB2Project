@@ -36,7 +36,26 @@ export function AdminPage() {
     let path = '/adminDEmployee'; 
     navigate(path);
   }
-
+  const changeCProduct = () =>{ 
+    let path = '/adminCProduct';  
+    navigate(path);
+  }
+  const changeRProduct = () =>{ 
+    let path = '/adminRProduct';  
+    navigate(path);
+  }
+  const changeUProduct = () =>{ 
+    let path = '/adminUProduct';  
+    navigate(path);
+  }
+  const changeDProduct = () =>{ 
+    let path = '/adminDProduct';  
+    navigate(path);
+  }
+  const changeTickets = () =>{ 
+    let path = '/tickets';  
+    navigate(path);
+  }
   
 
   return (
@@ -44,19 +63,50 @@ export function AdminPage() {
         <header className="Admin-header">
          
             <div style={{ backgroundImage: 'url(require("./Images/adminBGJ.jpg"))' }}>
-            <button type="button" className="btn btn-warning" onClick={changeSubsRoute}>Change Subs Price</button>
-            <button type="button" className="btn btn-warning" onClick={changeStoreRoute}>Change Store Location</button>
-            <button type="button" className="btn btn-warning" onClick={changeSubsShipping}>Change Shipping</button>
-            
-            <button type="button" className="btn btn-warning" onClick={changeCEmployee}>Create Employee</button>
-            <button type="button" className="btn btn-warning" onClick={changeREmployee}>Check Employee</button>
-            <button type="button" className="btn btn-warning" onClick={changeUEmployee}>Update Employee</button>
-            <button type="button" className="btn btn-warning" onClick={changeDEmployee}>Delete Employee</button>
-
-            <button type="button" className="btn btn-warning" >Create Product</button>
-            <button type="button" className="btn btn-warning" >Check Product</button>
-            <button type="button" className="btn btn-warning" >Update Product</button>
-            <button type="button" className="btn btn-warning" >Delete Product</button>
+                <div className='container mx-auto'>
+                  <div className='row'>
+                    <div className='col'>
+                      <button type="button" className="btn btn-warning" onClick={changeSubsRoute}>Change Subs Price</button>
+                    </div>
+                    <div className='col'>
+                      <button type="button" className="btn btn-warning" onClick={changeStoreRoute}>Change Store Location</button>
+                    </div>
+                    <div className='col'>
+                      <button type="button" className="btn btn-warning" onClick={changeSubsShipping}>Change Shipping</button>
+                    </div>
+                    <div className='col'>
+                      <button type="button" className="btn btn-warning" onClick={changeTickets}>Tickets</button>
+                    </div>
+                  </div>
+                  < div className='row'>
+                    <div className='col'>
+                      <button type="button" className="btn btn-warning" onClick={changeCEmployee}>Create Employee</button>
+                    </div>
+                    <div className='col'>
+                      <button type="button" className="btn btn-warning" onClick={changeREmployee}>Check Employee</button>
+                    </div>
+                    <div className='col'>
+                      <button type="button" className="btn btn-warning" onClick={changeUEmployee}>Update Employee</button>
+                    </div>
+                    <div className='col'>
+                      <button type="button" className="btn btn-warning" onClick={changeDEmployee}>Delete Employee</button>
+                    </div>
+                  </div>
+                  <div className='row'>
+                  <div className='col'>
+                    <button type="button" className="btn btn-warning" onClick={changeCProduct}>Create Product</button>
+                    </div>
+                    <div className='col'>
+                    <button type="button" className="btn btn-warning" onClick={changeRProduct}>Check Product</button>
+                    </div>
+                    <div className='col'>
+                    <button type="button" className="btn btn-warning" onClick={changeUProduct}>Update Product</button>
+                    </div>
+                    <div className='col'>
+                    <button type="button" className="btn btn-warning" onClick={changeDProduct}>Delete Product</button>
+                    </div>
+                  </div>
+                </div>
             </div>
 
         </header>

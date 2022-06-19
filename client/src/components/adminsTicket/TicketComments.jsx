@@ -34,6 +34,10 @@ export function TicketComment(){
     
     // empty dependency array means this effect will only run once 
     }, []);
+    const routeAdmin = () =>{ 
+        let path = '/admin'; 
+        navigate(path);
+    }
 
     return (
         <Fragment>
@@ -66,6 +70,9 @@ export function TicketComment(){
                         <input type='submit' className='btn btn-warning' value='Add'/>
                     </center>
                 </form>
+                <center>
+                    <button type="button" className="btn btn-warning" onClick={routeAdmin}>Go Back</button>
+                </center>
             </header>
         </Fragment> 
     );

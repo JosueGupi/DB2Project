@@ -38,10 +38,15 @@ export  function AdminStoresForm() {
     const coordLng = (data) => {
         setLng(data);
     };
+    const routeAdmin = () =>{ 
+        let path = '/admin'; 
+        navigate(path);
+    };
     
     return (
         <Fragment>
             <header className="Admin-header">
+            <div className='container mx-auto'>
                 <div className="container">
                     <MapContainer 
                     style={{ height: "50vh" }}
@@ -67,6 +72,7 @@ export  function AdminStoresForm() {
                         
                     </select>
                     </div>
+                    <div className="mb-3">
                     <select className="form-select" aria-label="Default select example" {...register('store',{required:true})}>
                     
                         <option key="1" value="Store A">Store A</option>
@@ -74,6 +80,7 @@ export  function AdminStoresForm() {
                         <option key="3" value="Store C">Store C</option>
                     
                     </select>
+                    </div>
                     <div className="mb-3">
                         
                         <input type="text" className="form-control" id="lati"  value={lat} 
@@ -90,6 +97,11 @@ export  function AdminStoresForm() {
                         <input type='submit' className='btn btn-warning' value='Change'/>
                     </center>
                 </form>
+                <center>
+                    <button type="button" className="btn btn-warning" onClick={routeAdmin}>Go Back</button>
+                </center>
+                </div>
+
             </header>
         </Fragment>
     )

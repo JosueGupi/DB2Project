@@ -33,7 +33,7 @@ export  function AdminUProduct() {
     return (
         <Fragment>
             <header className="Admin-header">
-                
+            <div className='container mx-auto'>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="mb-3">
                         <label  className="form-label" style={{color:'White'}}>Write the Id of the Product you want to update</label>
@@ -124,7 +124,10 @@ export  function AdminUProduct() {
                     </center>
                 </form>
                 
-                <button type="button" className="btn btn-warning" onClick={routeAdmin}>Go Back</button>
+                <center>
+                    <button type="button" className="btn btn-warning" onClick={routeAdmin}>Go Back</button>
+                </center>
+                </div>
             </header>
         </Fragment>
     )

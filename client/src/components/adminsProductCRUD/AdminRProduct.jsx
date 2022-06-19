@@ -43,7 +43,7 @@ export  function AdminRProduct() {
     return (
         <Fragment>
             <header className="Admin-header">
-                
+            <div className='container mx-auto'>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     
                     <div className="mb-3">
@@ -89,7 +89,10 @@ export  function AdminRProduct() {
                     <input type="text" className="form-control" value={subscription} disable/>
                 </div>
                 <img src={image}width="300" height="300"></img>                
-                <button type="button" className="btn btn-warning" onClick={routeAdmin}>Go Back</button>
+                <center>
+                    <button type="button" className="btn btn-warning" onClick={routeAdmin}>Go Back</button>
+                </center>
+                </div>
             </header>
         </Fragment>
     )

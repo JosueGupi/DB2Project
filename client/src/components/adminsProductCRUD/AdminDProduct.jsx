@@ -33,7 +33,7 @@ export  function AdminDProduct() {
     return (
         <Fragment>
             <header className="Admin-header">
-                
+            <div className='container mx-auto'>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     
                     <div className="mb-3">
@@ -58,7 +58,10 @@ export  function AdminDProduct() {
                     </center>
                 </form>
                 
-                <button type="button" className="btn btn-warning" onClick={routeAdmin}>Go Back</button>
+                <center>
+                    <button type="button" className="btn btn-warning" onClick={routeAdmin}>Go Back</button>
+                </center>
+                </div>
             </header>
         </Fragment>
     )

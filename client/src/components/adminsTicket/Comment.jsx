@@ -8,7 +8,7 @@ export function Comment({Comment}){
         <div className="col">
             <div className="container">
                 <div className="container">
-                    <label >{Comment.Username}</label>
+                    <label style={{color: 'white'}}>{Comment.Username}</label>
                     <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" defaultValue={Comment.Commentary} disabled></textarea>
                 </div>
             </div>
