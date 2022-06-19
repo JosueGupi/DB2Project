@@ -65,7 +65,8 @@ export function CheckoutPage(){
                 console.log('generate the sale...' + distance + numberStore)
                 const response3 = await axios.post('http://localhost:3001/checkout/generateSale',{location:state.location,idUser:state.idUser,numberStore:numberStore,distance:distance})
                 console.log(response3)
-                alert('Sale successfully generated')
+                alert('Sale successfully generated.\n We have sent the Sale Check to your mail.')
+                window.location.reload();
             } catch {
                 alert('Error generating the sale')
             }
@@ -92,9 +93,6 @@ export function CheckoutPage(){
         arrShoppCart.map(cartItem =>(total = (total + cartItem.price) * cartItem.quantity ))
         console.log(total)
         return(total)
-    }
-    const action = () => {
-        console.log("hola")
     }
     
     const onSubmit = async (data) => {

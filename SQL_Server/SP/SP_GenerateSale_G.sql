@@ -4,7 +4,7 @@ GO
 ALTER PROCEDURE SP_GenerateSale_G @idUser INT, @country VARCHAR(16), @numStore INT, @km INT
 AS
 BEGIN
-DECLARE @min INT, @max INT, @price INT, @idSale INT, @idWhisky INT, @quantity INT
+DECLARE @min INT, @max INT, @price INT, @idSale INT, @idWhisky INT, @quantity INT, @idShipping INT
 DECLARE @table TABLE (idShoppingCart INT, idWhisky INT, quantity INT)
 
 BEGIN TRY
@@ -12,11 +12,10 @@ BEGIN TRY
 	BEGIN
 		BEGIN TRANSACTION -- generate sale for shopping cart products
 
-			INSERT INTO DB_USA.dbo.Shipping(priceXKm)
-				VALUES(CAST(@km AS INT) * 0.1) 
-
+			SELECT @idShipping = idShipping FROM DB_USA.dbo.Shipping ORDER BY idShipping  
+			
 			INSERT INTO DB_USA.dbo.Sale(idStore,idUser,idShipping,date)
-				VALUES(@numStore,@idUser,SCOPE_IDENTITY(),GETDATE())
+				VALUES(@numStore,@idUser,@idShipping,CONVERT(date,GETDATE()))
 			SET @idSale = SCOPE_IDENTITY()
 
 			INSERT INTO @table
@@ -40,17 +39,17 @@ BEGIN TRY
 				WHERE idWhisky = @idWhisky 
 
 				UPDATE DB_USA.dbo.InventoryA
-				SET quantity = quantity - 1
+				SET quantity = quantity - @quantity
 				WHERE idWhisky = @idWhisky
 				AND @numStore = 1
 
 				UPDATE DB_USA.dbo.InventoryB
-				SET quantity = quantity - 1
+				SET quantity = quantity - @quantity
 				WHERE idWhisky = @idWhisky
 				AND @numStore = 2
 		
 				UPDATE DB_USA.dbo.InventoryC
-				SET quantity = quantity - 1
+				SET quantity = quantity - @quantity
 				WHERE idWhisky = @idWhisky
 				AND @numStore = 3
 
@@ -59,8 +58,8 @@ BEGIN TRY
 		
 		COMMIT TRANSACTION
 
-		SELECT S.idSale, date, idStore, Users.idUser, Users.name, Users.lastName,
-			   email, Whisky.idWhisky, Whisky.name, quantity, price, priceXKm
+		SELECT S.idSale,CONVERT(Varchar,S.[date],107) AS date, idStore, Users.idUser, Users.name, Users.lastName,
+			   email, Whisky.idWhisky, Whisky.name, quantity, price, priceXKm, @km AS km
 		FROM DB_USA.dbo.Sale AS S
 		INNER JOIN DB_USA.dbo.WhiskyXSale
 			ON S.idSale = WhiskyXSale.idSale
@@ -71,7 +70,7 @@ BEGIN TRY
 		INNER JOIN DB_USA.dbo.Whisky
 			ON WhiskyXSale.idWhisky = Whisky.idWhisky
 		WHERE S.idSale = @idSale
-		 
+
 		SELECT SUM((quantity * price) + priceXKm) AS Total 
 		FROM DB_USA.dbo.Sale AS S
 		INNER JOIN DB_USA.dbo.WhiskyXSale
@@ -86,17 +85,16 @@ BEGIN TRY
 	BEGIN
 		BEGIN TRANSACTION -- generate sale for shopping cart products
 
-			INSERT INTO DB_Ireland.dbo.Shipping(priceXKm)
-				VALUES(CAST(@km AS INT) * 0.1) 
+			SELECT @idShipping = idShipping FROM DB_Ireland.dbo.Shipping ORDER BY idShipping  
 
 			INSERT INTO DB_Ireland.dbo.Sale(idStore,idUser,idShipping,date)
-				VALUES(@numStore,@idUser,SCOPE_IDENTITY(),GETDATE())
+				VALUES(@numStore,@idUser,@idShipping,CONVERT(date,GETDATE())) 
 			SET @idSale = SCOPE_IDENTITY()
 
 			INSERT INTO @table
 			SELECT idShoppingCart, idWhisky, quantity FROM DB_Ireland.dbo.ShoppingCart
 			WHERE idUser = @idUser AND bought = 0
-			SELECT * FROM @table
+			
 			SELECT @min = MIN(idShoppingCart), @max = MAX(idShoppingCart) FROM DB_Ireland.dbo.ShoppingCart
 			WHERE idUser = @idUser
 			WHILE(@min <= @max)
@@ -115,17 +113,17 @@ BEGIN TRY
 				WHERE idWhisky = @idWhisky 
 
 				UPDATE DB_Ireland.dbo.InventoryA
-				SET quantity = quantity - 1
+				SET quantity = quantity - @quantity
 				WHERE idWhisky = @idWhisky
 				AND @numStore = 1
 
 				UPDATE DB_Ireland.dbo.InventoryB
-				SET quantity = quantity - 1
+				SET quantity = quantity - @quantity
 				WHERE idWhisky = @idWhisky
 				AND @numStore = 2
 		
 				UPDATE DB_Ireland.dbo.InventoryC
-				SET quantity = quantity - 1
+				SET quantity = quantity - @quantity
 				WHERE idWhisky = @idWhisky
 				AND @numStore = 3
 
@@ -133,15 +131,20 @@ BEGIN TRY
 			END			
 		
 		COMMIT TRANSACTION
-
-		SELECT S.idSale, idStore, idUser, idWhisky, quantity, price, priceXKm
+		 
+		SELECT S.idSale,CONVERT(Varchar,S.[date],107) AS date, idStore, Users.idUser, Users.name, Users.lastName,
+			   email, Whisky.idWhisky, Whisky.name, quantity, price, priceXKm, @km AS km
 		FROM DB_Ireland.dbo.Sale AS S
 		INNER JOIN DB_Ireland.dbo.WhiskyXSale
 			ON S.idSale = WhiskyXSale.idSale
 		INNER JOIN DB_Ireland.dbo.Shipping
 			ON S.idShipping = Shipping.idShipping
+		INNER JOIN DB_Ireland.dbo.Users
+			ON S.idUser = Users.idUser
+		INNER JOIN DB_Ireland.dbo.Whisky
+			ON WhiskyXSale.idWhisky = Whisky.idWhisky
 		WHERE S.idSale = @idSale
-		 
+
 		SELECT SUM((quantity * price) + priceXKm) AS Total 
 		FROM DB_Ireland.dbo.Sale AS S
 		INNER JOIN DB_Ireland.dbo.WhiskyXSale
@@ -156,11 +159,10 @@ BEGIN TRY
 	BEGIN
 		BEGIN TRANSACTION -- generate sale for shopping cart products
 
-			INSERT INTO DB_Scotland.dbo.Shipping(priceXKm)
-				VALUES(CAST(@km AS INT) * 0.1) 
+			SELECT @idShipping = idShipping FROM DB_Scotland.dbo.Shipping ORDER BY idShipping  
 
-			INSERT INTO DB_Scotland.dbo.Sale(idStore,idUser,idShipping)
-				VALUES(@numStore,@idUser,SCOPE_IDENTITY())
+			INSERT INTO DB_Scotland.dbo.Sale(idStore,idUser,idShipping,date)
+				VALUES(@numStore,@idUser,@idShipping,CONVERT(date,GETDATE()))
 			SET @idSale = SCOPE_IDENTITY()
 
 			INSERT INTO @table
@@ -185,17 +187,17 @@ BEGIN TRY
 				WHERE idWhisky = @idWhisky 
 
 				UPDATE DB_Scotland.dbo.InventoryA
-				SET quantity = quantity - 1
+				SET quantity = quantity - @quantity
 				WHERE idWhisky = @idWhisky
 				AND @numStore = 1
 
 				UPDATE DB_Scotland.dbo.InventoryB
-				SET quantity = quantity - 1
+				SET quantity = quantity - @quantity
 				WHERE idWhisky = @idWhisky
 				AND @numStore = 2
 		
 				UPDATE DB_Scotland.dbo.InventoryC
-				SET quantity = quantity - 1
+				SET quantity = quantity - @quantity
 				WHERE idWhisky = @idWhisky
 				AND @numStore = 3
 				
@@ -203,15 +205,20 @@ BEGIN TRY
 			END		
 		
 		COMMIT TRANSACTION
-
-		SELECT S.idSale, idStore, idUser, idWhisky, quantity, price, priceXKm
+		 
+		SELECT S.idSale,CONVERT(Varchar,S.[date],107) AS date, idStore, Users.idUser, Users.name, Users.lastName,
+			   email, Whisky.idWhisky, Whisky.name, quantity, price, priceXKm, @km AS km
 		FROM DB_Scotland.dbo.Sale AS S
 		INNER JOIN DB_Scotland.dbo.WhiskyXSale
 			ON S.idSale = WhiskyXSale.idSale
 		INNER JOIN DB_Scotland.dbo.Shipping
 			ON S.idShipping = Shipping.idShipping
+		INNER JOIN DB_Scotland.dbo.Users
+			ON S.idUser = Users.idUser
+		INNER JOIN DB_Scotland.dbo.Whisky
+			ON WhiskyXSale.idWhisky = Whisky.idWhisky
 		WHERE S.idSale = @idSale
-		 
+
 		SELECT SUM((quantity * price) + priceXKm) AS Total 
 		FROM DB_Scotland.dbo.Sale AS S
 		INNER JOIN DB_Scotland.dbo.WhiskyXSale
@@ -219,7 +226,7 @@ BEGIN TRY
 		INNER JOIN DB_Scotland.dbo.Shipping
 			ON S.idShipping = Shipping.idShipping
 		WHERE S.idSale = @idSale
-		
+				
 	END
 
 END TRY

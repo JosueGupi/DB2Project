@@ -6,8 +6,8 @@ app.post('/get_catalog', function (req, res) {
 
   // config for your database
   var config = {
-      user: 'sa',
-      password: 'admin123',
+      user: 'Geisel',
+      password: 'Rosado1010',
       server: 'localhost',
       database: 'DB_USA',
       port:1433,
@@ -47,8 +47,8 @@ app.post('/addShoppingCart', function (req, res) {
 
   // config for your database
   var config = {
-      user: 'sa',
-      password: 'admin123',
+      user: 'Geisel',
+      password: 'Rosado1010',
       server: 'localhost',
       database: 'DB_USA',
       port:1433,
@@ -88,8 +88,8 @@ app.post('/getShoppingCart', function (req, res) {
 
   // config for your database
   var config = {
-      user: 'sa',
-      password: 'admin123',
+      user: 'Geisel',
+      password: 'Rosado1010',
       server: 'localhost',
       database: 'DB_USA',
       port:1433,
@@ -127,8 +127,8 @@ app.post('/deleteShoppingCart', function (req, res) {
 
   // config for your database
   var config = {
-      user: 'sa',
-      password: 'admin123',
+      user: 'Geisel',
+      password: 'Rosado1010',
       server: 'localhost',
       database: 'DB_USA',
       port:1433,
