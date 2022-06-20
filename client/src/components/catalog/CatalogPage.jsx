@@ -52,6 +52,18 @@ export function CatalogPage(){
         }
     }
 
+    const actionMySales = async() => {
+        try {
+            console.log("open my sales " + state.idUser)      
+            const response = await axios.post('http://localhost:3001/checkout/selectSales',{idUser:state.idUser, location:state.location})
+            console.log(response.data.recordset)
+            navigate('/getMySales',{state:{idUser:state.idUser,username:state.username,location:state.location,arraySales:response.data.recordset}});
+        } catch (err) {
+            alert("Error opening my sales")
+        }
+    }
+
+
     return (
         <Fragment>
             <div class="container">
@@ -76,6 +88,9 @@ export function CatalogPage(){
                     </ul>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <button type="button" className="btn btn-warning" onClick={actionReview}> Reviews </button>
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <button type="button" className="btn btn-warning" onClick={actionMySales}> My Sales </button>
                     </ul>
                     <button type="button" className="btn btn-warning" onClick={action}> Shopping Cart </button>
                     </div>

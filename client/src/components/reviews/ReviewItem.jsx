@@ -5,7 +5,6 @@ import {useNavigate} from 'react-router-dom'
 export function ReviewItem({item}){
 
     let navigate = useNavigate();
-    console.log("ksksk" )
     return (
         <div className="col">
            {/* <p className="text">{card.name} {card.aged} {card.whiskyType} {card.supplier} {card.subscription}</p>*/} 

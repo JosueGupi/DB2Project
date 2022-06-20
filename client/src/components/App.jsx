@@ -23,6 +23,10 @@ import {CatalogPage} from './catalog/CatalogPage';
 import {CheckoutPage} from './checkout/CheckoutPage';
 import {CreateReviewPage} from './reviews/CreateReviewPage';
 import {GetReviewsPage} from './reviews/GetReviewsPage';
+import {MySalesPage} from './sales/MySalesPage';
+import {SuggestionPage} from './suggestions/SuggestionPage';
+import {SuggestionResponse} from './suggestions/SuggestionResponse';
+
 
 import '../App.css';
 
@@ -52,6 +56,9 @@ import '../App.css';
                     <Route exact path = "/comments" element = {<TicketComment/>}/>
                     <Route exact path = "/createReview" element = {<CreateReviewPage/>}/>
                     <Route exact path = "/getReviews" element = {<GetReviewsPage/>}/>
+                    <Route exact path = "/getMySales" element = {<MySalesPage/>}/>
+                    <Route exact path = "/getMySuggestions" element = {<SuggestionPage/>}/>
+                    <Route exact path = "/getSuggestResponse" element = {<SuggestionResponse/>}/>
                 </Routes>
             </div>
         </Router>
