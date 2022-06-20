@@ -45,7 +45,7 @@ export function AdminShipping() {
                     </div>
                     <div className="mb-3">
                         
-                        <input type="number" className="form-control" id="price" 
+                        <input type="number" className="form-control" id="price" min="1"
                         {...register('price',{required:true})}
                         />
                     </div>

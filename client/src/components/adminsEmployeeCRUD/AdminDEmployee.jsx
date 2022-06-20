@@ -38,7 +38,7 @@ export  function AdminDEmployee() {
                     
                     <div className="mb-3">
                     <label  className="form-label" style={{color:'White'}}>Write the Id of the Employee you want to delete</label>
-                        <input type="text" className="form-control" id="idEmployee" 
+                        <input type="text" className="form-control" id="idEmployee" min="1"
                         {...register('idEmployee',{required:true})}
                         />
                     </div>

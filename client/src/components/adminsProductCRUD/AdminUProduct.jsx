@@ -37,7 +37,7 @@ export  function AdminUProduct() {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="mb-3">
                         <label  className="form-label" style={{color:'White'}}>Write the Id of the Product you want to update</label>
-                        <input type="number" className="form-control" 
+                        <input type="number" className="form-control" min="1"
                             {...register('wID',{required:false})}
                             />
                     </div>
@@ -65,7 +65,7 @@ export  function AdminUProduct() {
                     
                     <div className="mb-3">
                     <label  className="form-label" style={{color:'White'}}>Quantity(Write 0 for no change)</label>
-                    <input type="number" className="form-control" 
+                    <input type="number" className="form-control" min="0"
                         {...register('qty',{required:false})}
                         />
                     </div>
@@ -79,7 +79,7 @@ export  function AdminUProduct() {
                     <div className="mb-3">  
                         <label  className="form-label" style={{color:'White'}}>Subscription</label>  
                         <select className="form-select" aria-label="Default select example" {...register('sub',{required:true})}>
-                    
+                            <option key="0" value="0">No change</option>
                             <option key="1" value="1">No tier</option>
                             <option key="2" value="2">Short Glass</option>
                             <option key="3" value="3">Gleincarn</option>
@@ -96,7 +96,7 @@ export  function AdminUProduct() {
 
                     <div className="mb-3">
                     <label  className="form-label" style={{color:'White'}}>Aged(Write 0 for no change)</label>
-                    <input type="number" className="form-control" 
+                    <input type="number" className="form-control" min="0"
                         {...register('aged',{required:false})}
                         />
                     </div>
@@ -109,7 +109,7 @@ export  function AdminUProduct() {
 
                     <div className="mb-3">
                     <label  className="form-label" style={{color:'White'}}>Price(Write 0 for no change)</label>
-                    <input type="number" className="form-control" 
+                    <input type="number" className="form-control" min="0"
                         {...register('price',{required:false})}
                         />
                     </div>

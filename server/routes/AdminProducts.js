@@ -208,13 +208,13 @@ app.post('/updateProduct', function (req, res) {
         const store = req.body.store
         const qty = req.body.qty
         const supplier = req.body.supplier == '' ? 'NULL' : "'"+req.body.supplier+"'"
-        const sub = req.body.sub == '' ? 'NULL' : "'"+req.body.sub+"'"
+        const sub = req.body.sub == 0 ? 'NULL' : req.body.sub
         const name = req.body.pname == '' ? 'NULL' : "'"+req.body.pname+"'"
         const aged = req.body.aged
         const price = req.body.price
         const whiskyId = req.body.wID
         const type = req.body.type == '' ? 'NULL' : "'"+req.body.type+"'"
-        const file = req.body.file == '' ? 'NULL' : "DECLARE @img VARBINARY(MAX) = (SELECT BulkColumn FROM OPENROWSET(BULK 'C:\\"+req.body.file+"',SINGLE_BLOB) AS Imagen);"
+        const file = req.body.file == '' ? 'DECLARE @img VARBINARY(MAX) = NULL;' : "DECLARE @img VARBINARY(MAX) = (SELECT BulkColumn FROM OPENROWSET(BULK 'C:\\"+req.body.file+"',SINGLE_BLOB) AS Imagen);"
         const q = file + "EXEC SP_UpdateProduct_J '"+country+"','"+store+"',"+qty+","+supplier+","+sub+","+name+","+aged+","+type+",@img,"+price+","+whiskyId
         console.log(req.body)
         // query to the database and get the records

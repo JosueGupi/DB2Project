@@ -61,7 +61,7 @@ export  function AdminCProduct() {
                     
                     <div className="mb-3">
                     <label  className="form-label" style={{color:'White'}}>Qty</label>
-                    <input type="number" className="form-control" 
+                    <input type="number" className="form-control" min="0"
                         {...register('qty',{required:true})}
                         />
                     </div>
@@ -91,7 +91,7 @@ export  function AdminCProduct() {
                     </div>
                     <div className="mb-3">
                     <label  className="form-label" style={{color:'White'}}>Aged</label>
-                    <input type="number" className="form-control" 
+                    <input type="number" className="form-control" min="0"
                         {...register('aged',{required:true})}
                         />
                     </div>
@@ -103,7 +103,7 @@ export  function AdminCProduct() {
                     </div>
                     <div className="mb-3">
                     <label  className="form-label" style={{color:'White'}}>Price</label>
-                    <input type="number" className="form-control" 
+                    <input type="number" className="form-control" min="1"
                         {...register('price',{required:true})}
                         />
                     </div>

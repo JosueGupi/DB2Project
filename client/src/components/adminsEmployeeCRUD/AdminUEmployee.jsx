@@ -78,7 +78,7 @@ export  function AdminUEmployee() {
                     </div>
                     <div className="mb-3">
                     <label  className="form-label" style={{color:'White'}}>Dollar Salary (write 0 for no change)</label>
-                    <input type="number" className="form-control" 
+                    <input type="number" className="form-control" min="0"
                         {...register('salary',{required:true})}
                         />
                     </div>

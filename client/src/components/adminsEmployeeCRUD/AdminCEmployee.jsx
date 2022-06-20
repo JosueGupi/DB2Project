@@ -70,7 +70,7 @@ export  function AdminCEmployee() {
                     </div>
                     <div className="mb-3">
                     <label  className="form-label" style={{color:'White'}}>Dollar Salary</label>
-                    <input type="number" className="form-control" id="idEmployee" 
+                    <input type="number" className="form-control" id="idEmployee" min="1"
                         {...register('salary',{required:true})}
                         />
                     </div>
