@@ -5,8 +5,8 @@ ALTER PROCEDURE SP_SelectReview_G
 AS
 BEGIN 
 	SELECT idReview, idUser, nameUser, idWhisky, whisky, description, image, Country
-	FROM OPENJSON(
-	(
+	FROM OPENJSON(  -- open json for image format
+	(   -- select all reviews of the country
 		SELECT idReview, R.idUser, U.name AS nameUser, R.idWhisky, W.name whisky, 
 		description, W.image, 'USA' AS Country
 		FROM DB_USA.dbo.Review AS R
@@ -19,8 +19,8 @@ BEGIN
 	 description VARCHAR(16), image VARCHAR(MAX), Country VARCHAR(16))
 	UNION ALL 
 	SELECT idReview, idUser, nameUser, idWhisky, whisky, description, image, Country
-	FROM OPENJSON(
-	(
+	FROM OPENJSON( -- open json for image format
+	(   -- select all reviews of the country
 		SELECT idReview, R.idUser, U.name AS nameUser, R.idWhisky, W.name whisky, 
 		description, W.image, 'USA' AS Country
 		FROM DB_Ireland.dbo.Review AS R
@@ -33,8 +33,8 @@ BEGIN
 	 description VARCHAR(16), image VARCHAR(MAX), Country VARCHAR(16))
 	UNION ALL
 	SELECT idReview, idUser, nameUser, idWhisky, whisky, description, image, Country
-	FROM OPENJSON(
-	(
+	FROM OPENJSON( -- open json for image format
+	(   -- select all reviews of the country
 		SELECT idReview, R.idUser, U.name AS nameUser, R.idWhisky, W.name whisky, 
 		description, W.image, 'USA' AS Country
 		FROM DB_Scotland.dbo.Review AS R

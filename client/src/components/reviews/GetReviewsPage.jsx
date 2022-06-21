@@ -16,7 +16,7 @@ export function GetReviewsPage(){
 
     const [arrayCard, setArrayCard] = useState([]) //hook use state
 
-    useEffect(() => {
+    useEffect(() => { //get reviews from all users
         // GET request using axios inside useEffect React hook
         axios.post('http://localhost:3001/review/selectReviews') //
             .then(response => setArrayCard(response.data.recordset))

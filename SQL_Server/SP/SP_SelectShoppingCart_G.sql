@@ -3,9 +3,9 @@ USE DB_USA
 GO
 ALTER PROCEDURE SP_SelectShoppingCart_G @idUser INT, @country VARCHAR(16)
 AS
-BEGIN
+BEGIN -- select the cart products that have not been purchased according to country and user
 	IF @country = 'USA'
-	BEGIN 
+	BEGIN  
 		SELECT S.idWhisky, W.name, I.price, idShoppingCart, S.quantity
 		FROM DB_USA.dbo.ShoppingCart AS S 
 		INNER JOIN DB_USA.dbo.Whisky AS W

@@ -14,7 +14,7 @@ BEGIN
 	IF @country ='USA'
 	BEGIN
 		SELECT @idWhisky = idWhisky FROM DB_USA.dbo.Whisky WHERE name = @whisky
-
+		-- get the products that have not been purchased and update table
 		SELECT @idShoppingCart = idShoppingCart FROM DB_USA.dbo.ShoppingCart 
 			WHERE idUser = @idUser AND idWhisky = @idWhisky AND bought = 0
 
@@ -22,7 +22,7 @@ BEGIN
 		SET quantity = quantity + 1
 		WHERE @idShoppingCart = idShoppingCart
 		AND @idShoppingCart > 0 
-
+		-- if the user does not have a cart, it is created
 		IF (@idShoppingCart = 0)
 		BEGIN
 			INSERT INTO DB_USA.dbo.ShoppingCart (idUser,idWhisky,bought,quantity)
@@ -37,7 +37,7 @@ BEGIN
 	IF @country ='Scotland'
 	BEGIN
 		SELECT @idWhisky = idWhisky FROM DB_Scotland.dbo.Whisky WHERE name = @whisky
-
+		-- get the products that have not been purchased and update table
 		SELECT @idShoppingCart = idShoppingCart FROM DB_Scotland.dbo.ShoppingCart 
 			WHERE idUser = @idUser AND idWhisky = @idWhisky AND bought = 0
 
@@ -45,7 +45,7 @@ BEGIN
 		SET quantity = quantity + 1
 		WHERE @idShoppingCart = idShoppingCart
 		AND @idShoppingCart > 0 
-
+		-- if the user does not have a cart, it is created
 		IF (@idShoppingCart = 0)
 		BEGIN
 			INSERT INTO DB_Scotland.dbo.ShoppingCart (idUser,idWhisky,bought,quantity)
@@ -60,7 +60,7 @@ BEGIN
 	IF @country ='Ireland'
 	BEGIN
 		SELECT @idWhisky = idWhisky FROM DB_Ireland.dbo.Whisky WHERE name = @whisky
-
+		-- get the products that have not been purchased and update table
 		SELECT @idShoppingCart = idShoppingCart FROM DB_Ireland.dbo.ShoppingCart 
 			WHERE idUser = @idUser AND idWhisky = @idWhisky AND bought = 0
 
@@ -68,7 +68,7 @@ BEGIN
 		SET quantity = quantity + 1
 		WHERE @idShoppingCart = idShoppingCart
 		AND @idShoppingCart > 0 
-		
+		-- if the user does not have a cart, it is created
 		IF (@idShoppingCart = 0)
 		BEGIN
 			INSERT INTO DB_Ireland.dbo.ShoppingCart (idUser,idWhisky,bought,quantity)

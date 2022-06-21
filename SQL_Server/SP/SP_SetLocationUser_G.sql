@@ -2,7 +2,7 @@ USE DB_USA
 
 GO
 ALTER PROCEDURE SP_SetLocationUser @country VARCHAR(16), @idUser INT, @latitude FLOAT, @lentgh FLOAT
-									
+-- If the user wishes, the shipping location is updated									
 AS
 BEGIN
 DECLARE @locationUser GEOGRAPHY

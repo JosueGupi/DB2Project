@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
-export function Response({Comment}){
-    return (
+export function Response({Comment}){ //admin response
+    return ( 
         
         <div className="col">
             <div className="container">

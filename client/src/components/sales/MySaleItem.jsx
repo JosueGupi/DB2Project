@@ -12,7 +12,7 @@ export function MySaleItem({item}){
     
     const [arrayDescription, setArrayDescription] = useState([]) //hook use state
     
-    useEffect(() => {
+    useEffect(() => { //get user sales
         // GET request using axios inside useEffect React hook
         axios.post('http://localhost:3001/checkout/selectSaleDescription',{idUser:item.idUser, location:item.location, idSale:item.id }) //
             .then(response => setArrayDescription(response.data.recordset))

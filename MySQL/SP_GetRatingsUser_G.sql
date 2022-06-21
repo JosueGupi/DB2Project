@@ -8,9 +8,3 @@ BEGIN
     WHERE Username = users;
 END$$
 DELIMITER ;
-
-
-SELECT * FROM employeedata.EmployeeRating
-SELECT * FROM employeedata.Employee
-
-CALL SP_GetRatings_J ()

@@ -16,7 +16,7 @@ export function SuggestionForm({state}){
             ratingPreparation:data.ratingEmployeePreparation,user:state.username,commentsDelivery:data.commentsDelivery,commentsPreparation:data.commentsPreparation,saleID:state.idSale})
             console.log(response) 
             alert("Thank you for the suggestions")    
-            //window.location.reload();       
+            window.location.reload();       
         } catch (err) {
             alert("Error creating the suggestions")
         }

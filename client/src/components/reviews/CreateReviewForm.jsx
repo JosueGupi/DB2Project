@@ -14,7 +14,7 @@ export function CreateReviewForm({state}){
     }
 
     const onSubmit = async(data) => {
-        try {
+        try { // send review creation request
             const response = await axios.post('http://localhost:3001/review/createReview',{whisky:data.name,description:data.description,idUser:state.idUser,location:state.location})
             console.log(response) 
             alert("Thank you for the review")         

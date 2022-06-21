@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom'
 
 export function ReviewItem({item}){
 
-    const img = "data:image/png;base64," + item.image
+    const img = "data:image/png;base64," + item.image //image from db
 
     return (
         <div className="col">

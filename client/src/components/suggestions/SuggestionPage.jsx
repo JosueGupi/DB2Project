@@ -17,7 +17,7 @@ export function SuggestionPage(){
 
     const [arrayTicket, setArrayTicket] = useState([]) //hook use state
     let navigate = useNavigate();
-    useEffect(() => {
+    useEffect(() => { //get tickets
         // GET request using axios inside useEffect React hook
         axios.post('http://localhost:3001/adminEmployees/getRatingsUser',{user:state.username})
             .then(response => setArrayTicket(response.data[0]))

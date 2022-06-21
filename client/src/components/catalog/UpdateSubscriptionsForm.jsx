@@ -16,7 +16,7 @@ export function UpdateSubscriptionsForm(){
     }
 
     const onSubmit = async(data) => {
-        try {
+        try { //ask the db to update the user's subscription
             const response = await axios.post('http://localhost:3001/catalog/updateSuscription',{idUser:state.idUser,suscription:data.subscription,location:state.location})
             console.log(response) 
             alert("Subscription updated successfully")

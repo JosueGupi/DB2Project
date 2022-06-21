@@ -10,7 +10,7 @@ BEGIN
         ,DateC
 		,Country
 	)VALUES(
-		(SELECT idEmployee FROM employeedata.Employee ORDER BY RAND() LIMIT 1)
+		(SELECT idEmployee FROM employeedata.Employee ORDER BY RAND() LIMIT 1) -- random id employee
 		,(SELECT CURDATE())
         ,country
 	);
@@ -21,9 +21,9 @@ BEGIN
         ,idPreparation
 		,Country
 	)VALUES(
-		(SELECT idEmployee FROM employeedata.Employee ORDER BY RAND() LIMIT 1)
+		(SELECT idEmployee FROM employeedata.Employee ORDER BY RAND() LIMIT 1) -- random id employee
 		,saleID
-        ,(SELECT LAST_INSERT_ID())
+        ,(SELECT LAST_INSERT_ID()) -- id preparation
         ,country
 	);
     

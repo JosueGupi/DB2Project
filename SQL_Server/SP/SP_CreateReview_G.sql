@@ -6,7 +6,7 @@ AS
 DECLARE @idWhisky INT
 BEGIN TRY
 	IF @country = 'USA'
-	BEGIN
+	BEGIN  -- select the reviews from USA
 		SELECT @idWhisky = idWhisky FROM DB_USA.dbo.Whisky WHERE name = @whisky
 		INSERT DB_USA.dbo.Review (idUser, idWhisky, description)
 			VALUES (@idUser,@idWhisky,@description)
@@ -15,7 +15,7 @@ BEGIN TRY
 		WHERE idReview = SCOPE_IDENTITY()
 	END
 	IF @country = 'Ireland'
-	BEGIN
+	BEGIN  -- select the reviews from Ireland
 		SELECT @idWhisky = idWhisky FROM DB_Ireland.dbo.Whisky WHERE name = @whisky		
 		INSERT DB_Ireland.dbo.Review (idUser, idWhisky, description)
 			VALUES (@idUser,@idWhisky,@description)
@@ -24,7 +24,7 @@ BEGIN TRY
 		WHERE idReview = SCOPE_IDENTITY()
 	END
 	IF @country = 'Scotland'
-	BEGIN
+	BEGIN  -- select the reviews from Scotland
 		SELECT @idWhisky = idWhisky FROM DB_Scotland.dbo.Whisky WHERE name = @whisky		
 		INSERT DB_Scotland.dbo.Review (idUser, idWhisky, description)
 			VALUES (@idUser,@idWhisky,@description)

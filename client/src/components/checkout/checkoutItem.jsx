@@ -5,7 +5,7 @@ import axios from 'axios';
 import './checkout.styles.scss';
 
 export function CheckoutItem ({ cartItem}) {
-
+  //get the currency of the country
   var currency = ''
     if (cartItem.location == 'USA'){
         currency = 'Dollars'

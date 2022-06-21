@@ -20,8 +20,8 @@ export function CatalogPage(){
     const [arrayFiltered, setArrayF] = useState([]);
     const {register, handleSubmit} = useForm();
     
-    useEffect(() => {
-        (async() => {
+    useEffect(() => {(
+        async() => { //request catalog according to user
             const response = await axios.post('http://localhost:3001/catalog/get_catalog',{idUser:state.idUser, location:state.location}) 
             console.log(response)
             setArrayCard(response.data.recordset)
@@ -65,9 +65,7 @@ export function CatalogPage(){
     }
     const actionSubscriptions = async() => {
         try {
-            console.log("open actionSubscriptions " + state.idUser)      
-            /*const response = await axios.post('http://localhost:3001/checkout/selectSales',{idUser:state.idUser, location:state.location})
-            console.log(response.data.recordset)*/
+            console.log("open actionSubscriptions " + state.idUser)  
             navigate('/updateSubscription',{state:{idUser:state.idUser,username:state.username,location:state.location}});
         } catch (err) {
             alert("Error opening Subscriptions")

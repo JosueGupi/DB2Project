@@ -45,7 +45,7 @@ export function CheckoutPage(){
             alert('Error getting store')
         }
         
-        if(updateLocation = 1){
+        if(updateLocation = 1){ //1 means that the user wants to update the shipping address
             try{
                 console.log('set location...')
                 const response2 = await axios.post('http://localhost:3001/checkout/setLocationUser',{location:state.location,idUser:state.idUser,latitude:lat,lentgh:lng})
@@ -55,14 +55,14 @@ export function CheckoutPage(){
             }
         }
 
-        if(numberStore != -1){
-            try{
+        if(numberStore != -1){ //-1 it means that no available place was found
+            try{ //create the sale and send an email
                 console.log('generate the sale...' + distance + numberStore)
                 const response3 = await axios.post('http://localhost:3001/checkout/generateSale',{location:state.location,idUser:state.idUser,numberStore:numberStore,distance:distance})
                 console.log(response3)
                 const idSale = response3.data.recordset[0].idSale
                 alert('Sale successfully generated.\n We have sent the Sale Check to your mail.')
-                try{
+                try{ //Assign employee to sales (MySQL)
                     console.log('Assign employee to sales ' + idSale)
                     const response4 = await axios.post('http://localhost:3001/adminEmployees/insertDeliveryPreparat',{location:state.location,idSale:idSale})
                     console.log(response4)

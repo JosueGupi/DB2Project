@@ -38,7 +38,7 @@ BEGIN TRY
 		INSERT INTO @table
 		SELECT idShoppingCart, idWhisky, quantity FROM DB_USA.dbo.ShoppingCart
 		WHERE idUser = @idUser AND bought = 0
-	
+		-- get if the products in the cart are in stock
 		SELECT @min = MIN(idShoppingCart), @max = MAX(idShoppingCart) FROM @table
 		WHILE(@min <= @max)
 		BEGIN
@@ -47,24 +47,24 @@ BEGIN TRY
 			SELECT @temp = quantity FROM DB_USA.dbo.InventoryA WHERE idWhisky = @idWhisky			
 			IF @quantity > @temp
 			BEGIN
-				SET @availableA = 0
+				SET @availableA = 0 -- insufficient resources
 			END		
 			
 			SELECT @temp = quantity FROM DB_USA.dbo.InventoryB WHERE idWhisky = @idWhisky			
 			IF @quantity > @temp
 			BEGIN
-				SET @availableB = 0
+				SET @availableB = 0 -- insufficient resources
 			END
 			
 			SELECT @temp = quantity FROM DB_USA.dbo.InventoryC WHERE idWhisky = @idWhisky	
 			IF @quantity > @temp
 			BEGIN
-				SET @availableC = 0
+				SET @availableC = 0 -- insufficient resources
 			END
 			
 			SET  @min = @min + 1 
 		END
-
+		-- get the shortest distance where there are enough products
 		INSERT INTO @ranking (numberStore, distance, available)
 			VALUES(1,@distanceA,@availableA),
 				  (2,@distanceB,@availableB),
@@ -86,7 +86,7 @@ BEGIN TRY
 		INSERT INTO @table
 		SELECT idShoppingCart, idWhisky, quantity FROM DB_Ireland.dbo.ShoppingCart
 		WHERE idUser = @idUser AND bought = 0
-
+		-- get if the products in the cart are in stock
 		SELECT @min = MIN(idShoppingCart), @max = MAX(idShoppingCart) FROM @table		
 		WHILE(@min <= @max)
 		BEGIN
@@ -95,24 +95,24 @@ BEGIN TRY
 			SELECT @temp = quantity FROM DB_Ireland.dbo.InventoryA WHERE idWhisky = @idWhisky			
 			IF @quantity > @temp
 			BEGIN
-				SET @availableA = 0
+				SET @availableA = 0 -- insufficient resources
 			END		
 			
 			SELECT @temp = quantity FROM DB_Ireland.dbo.InventoryB WHERE idWhisky = @idWhisky			
 			IF @quantity > @temp
 			BEGIN
-				SET @availableB = 0
+				SET @availableB = 0 -- insufficient resources
 			END
 			
 			SELECT @temp = quantity FROM DB_Ireland.dbo.InventoryC WHERE idWhisky = @idWhisky	
 			IF @quantity > @temp
 			BEGIN
-				SET @availableC = 0
+				SET @availableC = 0 -- insufficient resources
 			END
 			
 			SET  @min = @min + 1 
 		END
-
+		-- get the shortest distance where there are enough products
 		INSERT INTO @ranking (numberStore, distance, available)
 			VALUES(1,@distanceA,@availableA),
 			      (2,@distanceB,@availableB),
@@ -135,7 +135,7 @@ BEGIN TRY
 		SELECT idShoppingCart, idWhisky, quantity FROM DB_Scotland.dbo.ShoppingCart
 		WHERE idUser = @idUser  AND bought = 0		
 		SELECT @min = MIN(idShoppingCart), @max = MAX(idShoppingCart) FROM @table
-		
+		-- get if the products in the cart are in stock
 		WHILE(@min <= @max)
 		BEGIN
 			SELECT @quantity = quantity, @idWhisky = idWhisky FROM @table WHERE idShoppingCart = @min
@@ -143,25 +143,25 @@ BEGIN TRY
 			SELECT @temp = quantity FROM DB_Scotland.dbo.InventoryA WHERE idWhisky = @idWhisky			
 			IF @quantity > @temp
 			BEGIN
-				SET @availableA = 0
+				SET @availableA = 0 -- insufficient resources
 			END		
 			
 			SELECT @temp = quantity FROM DB_Scotland.dbo.InventoryB WHERE idWhisky = @idWhisky			
 			IF @quantity > @temp
 			BEGIN
-				SET @availableB = 0
+				SET @availableB = 0 -- insufficient resources
 			END
 			
 			SELECT @temp = quantity FROM DB_Scotland.dbo.InventoryC WHERE idWhisky = @idWhisky	
 			IF @quantity > @temp
 			BEGIN
-				SET @availableC = 0
+				SET @availableC = 0 -- insufficient resources
 			END
 			
 			SET  @min = @min + 1 
 		END
-
-		INSERT INTO @ranking (numberStore, distance, available)
+		-- get the shortest distance where there are enough products
+		INSERT INTO @ranking (numberStore, distance, available) 
 			VALUES(1,@distanceA,@availableA),
 			      (2,@distanceB,@availableB),
 			      (3,@distanceC,@availableC)
