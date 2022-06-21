@@ -19,12 +19,13 @@ DECLARE @supplierID INT
     ,@typeID INT
     SET NOCOUNT ON; 
     BEGIN TRY   
+    --select the country to create
         IF (@country = 'USA')
         BEGIN
             SELECT @supplierID = idSupplier FROM DB_USA.dbo.Supplier WHERE [name] = @supplier;
             SELECT @whiskyTypeID = idWhiskyType FROM DB_USA.dbo.WhiskyType WHERE [name] = @whiskytype;
             SELECT @whiskyTypeID
-
+--validate if supplier and type exist, if not create it
             IF(@supplierID IS NULL)
             BEGIN
                 INSERT INTO DB_USA.dbo.Supplier([name])VALUES(@supplier);
@@ -37,12 +38,12 @@ DECLARE @supplierID INT
                 INSERT INTO DB_USA.dbo.WhiskyType([name])VALUES(@whiskytype);
                 SELECT @whiskyTypeID = idWhiskyType FROM DB_USA.dbo.WhiskyType WHERE [name] = @whiskytype;
             END
-           
+           --validate if product already exist do not repeat it and just add it to store
             INSERT INTO DB_USA.dbo.Whisky (idWhiskyType,idSupplier,idSubscription,[name],aged,[image])
 			SELECT @whiskyTypeID,@supplierID,@sub,@name,@aged,@file WHERE NOT EXISTS (SELECT idWhisky FROM  DB_USA.dbo.Whisky WHERE [name] = @name);
 		
             SELECT @whiskyID = idWhisky FROM  DB_USA.dbo.Whisky WHERE [name] = @name;
-
+            --decide the store where the inventory is goin to be modified
             INSERT INTO DB_USA.dbo.InventoryA(idWhisky, quantity,price)
             SELECT @whiskyID,@qty,@price WHERE @storeNumber = 'Store A';
 

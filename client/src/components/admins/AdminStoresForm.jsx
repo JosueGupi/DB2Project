@@ -13,17 +13,17 @@ export  function AdminStoresForm() {
     
     const {register, handleSubmit} = useForm();
     let navigate = useNavigate();
-    const [lat, setLat] = useState("Latitude");
+    const [lat, setLat] = useState("Latitude");//vars for saving map location
     const [lng, setLng] = useState("Length");
     
-
+//get information from back-end
     const onSubmit = async (data) => {
         try {
-            data.latq = lat;
+            data.latq = lat;//due to error getting data
             data.lngq = lng;
-            console.log('funcara')
+            
             const response = await axios.post('http://localhost:3001/stores/changeLocation',data)
-            console.log('funca')
+            
             navigate('/admin')
             
 
@@ -31,13 +31,16 @@ export  function AdminStoresForm() {
             alert("ERROR CHANGE!!!")
         } 
     }
+    //set value for latitude
     const coordLat = (data) => {
         console.log(data)
         setLat(data);
     };
+    //set value for lenght
     const coordLng = (data) => {
         setLng(data);
     };
+    // go back to admin page
     const routeAdmin = () =>{ 
         let path = '/admin'; 
         navigate(path);

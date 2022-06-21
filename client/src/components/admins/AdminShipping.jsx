@@ -11,7 +11,7 @@ export function AdminShipping() {
   const userLogged = 'admin'
   
   const{register, handleSubmit} = useForm();
-
+//get information from back-end
     const onSubmit = async(data) => {
         try {
             const response = await axios.post('http://localhost:3001/shipping/changeShipping',data)
@@ -23,6 +23,7 @@ export function AdminShipping() {
             console.log(err)
         }
     }
+    //go back to admin page
     const routeAdmin = () =>{ 
         let path = '/admin'; 
         navigate(path);

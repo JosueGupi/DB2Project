@@ -12,7 +12,7 @@ export  function AdminDProduct() {
     let navigate = useNavigate();
     
     
-
+    //update information in the back-end
     const onSubmit = async (data) => {
         try {
             
@@ -24,6 +24,7 @@ export  function AdminDProduct() {
             alert("ERROR!!!")
         } 
     }
+    //go back to admin page
     const routeAdmin = () =>{ 
         let path = '/admin'; 
         navigate(path);

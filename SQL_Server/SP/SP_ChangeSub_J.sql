@@ -9,6 +9,7 @@ AS
 BEGIN
     SET NOCOUNT ON; 
     BEGIN TRY
+    --update price in the selected country
         UPDATE DB_USA.dbo.Subscription
         SET price = @price
         WHERE @country = 'USA'

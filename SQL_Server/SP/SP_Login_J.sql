@@ -7,6 +7,7 @@ AS
 BEGIN
     SET NOCOUNT ON; 
     BEGIN TRY
+    --select the country where the user is from
         SELECT U.idUser
             , U.username
             , U.administrator
@@ -15,7 +16,7 @@ BEGIN
         FROM DB_USA.dbo.Users U 
         INNER JOIN DB_USA.dbo.Subscription S ON U.idSubscription = S.idSubscription
         WHERE username = @username
-        AND [password] = HASHBYTES('SHA2_256',@password)
+        AND [password] = HASHBYTES('SHA2_256',@password)--encrypt password
         UNION
         SELECT U.idUser
             , U.username

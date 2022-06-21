@@ -9,6 +9,7 @@ AS
 BEGIN
     SET NOCOUNT ON; 
     BEGIN TRY
+    --decide the country and store where location will be modified
         UPDATE DB_USA.dbo.Store
         SET dimensions = geography::Point(@latitude,@lentgh,4326)
         WHERE idStore = 1

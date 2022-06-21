@@ -8,8 +8,10 @@ BEGIN
 DECLARE @whiskyID INT
     SET NOCOUNT ON; 
     BEGIN TRY   
+    --select the country to get info
         IF (@country = 'USA')
         BEGIN
+        --use json to get base 64 image
             SELECT [aged],[Type],[Supplier],[Subscription],[image]
         FROM openjson(
         (

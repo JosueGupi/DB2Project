@@ -15,6 +15,7 @@ export function TicketComment(){
     let navigate = useNavigate();
     const [arrayComment, setArrayComment] = useState([]) //hook use state
     
+    //set the information of the conversation of the ticket
     const onSubmit = async(data) => {
         try {
             const response = await axios.post('http://localhost:3001/adminEmployees/addComments',{idTicket:state.idTicket,user:'Admin',comment:data.comment})
@@ -26,6 +27,7 @@ export function TicketComment(){
             console.log(err)
         }
     }
+    //set the information of the conversation of the ticket
     useEffect(() => {
         // GET request using axios inside useEffect React hook
         axios.post('http://localhost:3001/adminEmployees/getComments',{idTicket:state.idTicket})
@@ -34,6 +36,7 @@ export function TicketComment(){
     
     // empty dependency array means this effect will only run once 
     }, []);
+    //go back to the admin page
     const routeAdmin = () =>{ 
         let path = '/admin'; 
         navigate(path);

@@ -15,7 +15,7 @@ export function LoginForm(){
             const user = response.data.recordset[0].username;
             const idUser = response.data.recordset[0].idUser;
             const location = response.data.recordset[0].Location;
-
+            //decide where the user will go
             if(response.data.recordset[0].administrator == 1){
                 navigate('/admin',{state:{username:user}})
             }else{
@@ -28,6 +28,7 @@ export function LoginForm(){
             console.log(err)
         }
     }
+    //create new account page
     const routeChange = () =>{ 
         let path = '/register'; 
         navigate(path);

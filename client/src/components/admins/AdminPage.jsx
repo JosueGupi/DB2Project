@@ -7,7 +7,7 @@ export function AdminPage() {
   let navigate = useNavigate();
   const {state} = useLocation();
   const userLogged = 'admin'
-  
+  //routes were admin function are
   const changeStoreRoute = () =>{ 
     let path = '/adminStore'; 
     navigate(path);

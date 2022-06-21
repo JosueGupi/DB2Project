@@ -8,12 +8,13 @@ BEGIN
 DECLARE @whiskyID INT
     SET NOCOUNT ON; 
     BEGIN TRY   
+    --select country to modify the product
         IF (@country = 'USA')
         BEGIN
             SELECT @whiskyID = idWhisky FROM DB_USA.dbo.Whisky WHERE [name] = @name;
 
             
-            
+            --delete it in order that fk do not ghet affected
             DELETE FROM DB_USA.dbo.InventoryA WHERE idWhisky = @whiskyID;
             DELETE FROM DB_USA.dbo.InventoryB WHERE idWhisky = @whiskyID;
             DELETE FROM DB_USA.dbo.InventoryC WHERE idWhisky = @whiskyID;

@@ -12,7 +12,7 @@ export  function AdminCProduct() {
     let navigate = useNavigate();
     
     
-
+    //send information to the back-end
     const onSubmit = async (data) => {
         try {
             data.file = data.file[0].name 
@@ -26,6 +26,7 @@ export  function AdminCProduct() {
             alert("ERROR ADD!!!")
         } 
     }
+    //go back to admin page
     const routeAdmin = () =>{ 
         let path = '/admin'; 
         navigate(path);

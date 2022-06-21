@@ -18,11 +18,13 @@ export  function AdminRProduct() {
     
     console.log('image admin')
     console.log(image)
+    //get information from the backend
     const onSubmit = async (data) => {
         try {
             
             const response = await axios.post('http://localhost:3001/adminProduct/readProduct',data)
             console.log(response)
+            //set info to spaces
             setAged(response.data.recordset[0].aged)
             setType(response.data.recordset[0].Type)
             setSupplier(response.data.recordset[0].Supplier)

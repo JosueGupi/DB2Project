@@ -8,6 +8,7 @@ AS
 BEGIN
     SET NOCOUNT ON; 
     BEGIN TRY
+        --update info of shippinf in the selected country
         INSERT INTO DB_USA.dbo.Shipping
         (priceXKM)SELECT  @price
         WHERE @country = 'USA'

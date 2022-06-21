@@ -12,7 +12,7 @@ export  function AdminDEmployee() {
     let navigate = useNavigate();
     
     
-
+    //update info using the backend
     const onSubmit = async (data) => {
         try {
             
@@ -24,6 +24,7 @@ export  function AdminDEmployee() {
             alert("ERROR!!!")
         } 
     }
+    //go back to admin page
     const routeAdmin = () =>{ 
         let path = '/admin'; 
         navigate(path);

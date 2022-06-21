@@ -20,12 +20,13 @@ DECLARE @supplierID INT
     
     SET NOCOUNT ON; 
     BEGIN TRY   
+    --decide database to modify
         IF (@country = 'USA')
         BEGIN
             SELECT @supplierID = idSupplier FROM DB_USA.dbo.Supplier WHERE [name] = @supplier;
             SELECT @whiskyTypeID = idWhiskyType FROM DB_USA.dbo.WhiskyType WHERE [name] = @whiskytype;
             
-
+            --validate if supplier and type exist, if not create it
             IF(@supplierID IS NULL AND @supplier IS NOT NULL)
             BEGIN
                 INSERT INTO DB_USA.dbo.Supplier([name])VALUES(@supplier);
@@ -48,6 +49,7 @@ DECLARE @supplierID INT
                 ,[image] = ISNULL(@file,[image])
             WHERE idWhisky = @whiskyID;
 
+            --select which store should be updated
             UPDATE DB_USA.dbo.InventoryA
             SET quantity = CASE WHEN @qty = 0 THEN quantity ELSE @qty END
                 ,price = CASE WHEN @price = 0 THEN price ELSE @price END

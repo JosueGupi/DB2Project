@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 
 export function Ticket({ticket}){
-
+    //get the information to create the component
     let navigate = useNavigate();
 
     const routeChange = () =>{ 
@@ -15,7 +15,7 @@ export function Ticket({ticket}){
 
     const action = () => {
         try {
-            
+            //set the information to new component to create 
             console.log(ticket.idEmployeeRating);
             navigate('/comments',{state:{idTicket:ticket.idEmployeeRating}})
                     

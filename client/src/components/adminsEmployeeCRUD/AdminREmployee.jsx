@@ -17,11 +17,12 @@ export  function AdminREmployee() {
     const [localSalary, setLocalS] = useState('');
     const [dollarSalary, setDollarS] = useState('');
     
-
+    //get information from the admin page
     const onSubmit = async (data) => {
         try {
             
             const response = await axios.post('http://localhost:3001/adminEmployees/readEmployee',data)
+            //set information to the spaces
             console.log(response)
             setCountry(response.data.Country)
             setJob(response.data.JobName)
@@ -34,6 +35,7 @@ export  function AdminREmployee() {
             alert("ERROR CHANGE!!!")
         } 
     }
+    //go back to admin page
     const routeAdmin = () =>{ 
         let path = '/admin'; 
         navigate(path);

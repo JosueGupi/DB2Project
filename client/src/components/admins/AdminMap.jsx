@@ -6,6 +6,7 @@ export function AdminMap({coordLat,coordLng}) {
     const [position, setPosition] = useState(null)
     const [lat, setLat] = useState(null)
     const [lng, setLng] = useState(null)
+    //catch onClick events
     const map = useMapEvents({
       click(e) {
         setPosition(e.latlng)

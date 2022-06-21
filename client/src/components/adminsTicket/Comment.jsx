@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 export function Comment({Comment}){
+    //get the information to create the component
     return (
         
         <div className="col">
