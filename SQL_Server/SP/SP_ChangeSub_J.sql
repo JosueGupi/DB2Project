@@ -30,13 +30,7 @@ BEGIN
     END TRY
 
     BEGIN CATCH
-        INSERT INTO DB_USA.dbo.ERROR(
-            idError
-            ,[DESCRIPTION]
-        )VALUES(
-            1
-            ,ERROR_MESSAGE()
-        )
+        SELECT 'ERROR'
     END CATCH
     SET NOCOUNT OFF;
 END 

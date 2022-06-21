@@ -131,7 +131,7 @@ DECLARE @supplierID INT
     END TRY
 
     BEGIN CATCH
-        PRINT 'ERROR'
+        SELECT 'ERROR'
     END CATCH
     SET NOCOUNT OFF;
 END 
