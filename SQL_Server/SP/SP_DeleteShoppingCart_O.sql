@@ -9,23 +9,23 @@ SELECT @idWhisky = idWhisky FROM Whisky WHERE name = @whisky
 BEGIN
 	BEGIN TRY
 
-	IF @country ='USA'
+	IF @country ='USA'--filters the elements by country
 	BEGIN
 		DELETE FROM DB_USA.dbo.ShoppingCart WHERE idWhisky = @idWhisky AND idUser = @idUser;
-		SELECT @max = MAX(idShoppingCart) FROM DB_USA.dbo.ShoppingCart;
-		DBCC CHECKIDENT('DB_USA.dbo.ShoppingCart', RESEED, @max)
+		SELECT @max = MAX(idShoppingCart) FROM DB_USA.dbo.ShoppingCart;--select the max id in the table to reasigned
+		DBCC CHECKIDENT('DB_USA.dbo.ShoppingCart', RESEED, @max)--reset the fk for a better manage of the id when deleted
 	END
 	IF @country ='Scotland'
 	BEGIN
 		DELETE FROM DB_Scotland.dbo.ShoppingCart WHERE idWhisky = @idWhisky AND idUser = @idUser;
-		SELECT @max = MAX(idShoppingCart) FROM DB_Scotland.dbo.ShoppingCart;
-		DBCC CHECKIDENT('DB_Scotland.dbo.ShoppingCart', RESEED, @max)
+		SELECT @max = MAX(idShoppingCart) FROM DB_Scotland.dbo.ShoppingCart;--select the max id in the table to reasigned
+		DBCC CHECKIDENT('DB_Scotland.dbo.ShoppingCart', RESEED, @max)--reset the fk for a better manage of the id when deleted
 	END
 	IF @country ='Ireland'
 	BEGIN
 		DELETE FROM DB_Ireland.dbo.ShoppingCart WHERE idWhisky = @idWhisky AND idUser = @idUser;
-		SELECT @max = MAX(idShoppingCart) FROM DB_Ireland.dbo.ShoppingCart;
-		DBCC CHECKIDENT('DB_Ireland.dbo.ShoppingCart', RESEED, @max)
+		SELECT @max = MAX(idShoppingCart) FROM DB_Ireland.dbo.ShoppingCart;--select the max id in the table to reasigned
+		DBCC CHECKIDENT('DB_Ireland.dbo.ShoppingCart', RESEED, @max)--reset the fk for a better manage of the id when deleted
 	END
 	
 	END TRY

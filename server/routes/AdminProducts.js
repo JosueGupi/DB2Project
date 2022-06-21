@@ -6,8 +6,8 @@ app.post('/createProduct', function (req, res) {
 
     // config for your database
     var config = {
-        user: 'Geisel',
-        password: 'Rosado1010',
+        user: 'sa',
+        password: 'admin123',
         server: 'localhost',
         database: 'DB_USA',
         port:1433,
@@ -95,8 +95,8 @@ app.post('/deleteProduct', function (req, res) {
 
     // config for your database
     var config = {
-        user: 'Geisel',
-        password: 'Rosado1010',
+        user: 'sa',
+        password: 'admin123',
         server: 'localhost',
         database: 'DB_USA',
         port:1433,
@@ -141,8 +141,8 @@ app.post('/readProduct', function (req, res) {
 
     // config for your database
     var config = {
-        user: 'Geisel',
-        password: 'Rosado1010',
+        user: 'sa',
+        password: 'admin123',
         server: 'localhost',
         database: 'DB_USA',
         port:1433,
@@ -184,8 +184,8 @@ app.post('/updateProduct', function (req, res) {
 
     // config for your database
     var config = {
-        user: 'Geisel',
-        password: 'Rosado1010',
+        user: 'sa',
+        password: 'admin123',
         server: 'localhost',
         database: 'DB_USA',
         port:1433,
