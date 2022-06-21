@@ -31,11 +31,6 @@ export function CheckoutPage(){
         navigate(path,{state:{idUser:state.idUser,username:state.username,location:state.location}});
     }
  
-    const actionSuggestion = () =>{ 
-        let path = '/'; 
-        navigate(path,{state:{idUser:state.idUser,username:state.username,location:state.location}});
-    }
-
     const actionBuy = async() => {
         
         try {
@@ -65,7 +60,15 @@ export function CheckoutPage(){
                 console.log('generate the sale...' + distance + numberStore)
                 const response3 = await axios.post('http://localhost:3001/checkout/generateSale',{location:state.location,idUser:state.idUser,numberStore:numberStore,distance:distance})
                 console.log(response3)
+                const idSale = response3.data.recordset[0].idSale
                 alert('Sale successfully generated.\n We have sent the Sale Check to your mail.')
+                try{
+                    console.log('Assign employee to sales ' + idSale)
+                    const response4 = await axios.post('http://localhost:3001/adminEmployees/insertDeliveryPreparat',{location:state.location,idSale:idSale})
+                    console.log(response4)
+                } catch {
+                    alert('Error assigning employee to sales')
+                }
                 window.location.reload();
             } catch {
                 alert('Error generating the sale')
@@ -142,7 +145,7 @@ export function CheckoutPage(){
                     </div>
                 </div>
                 {arrShoppCart.map(cartItem =>
-                    (<CheckoutItem key={cartItem.id} cartItem={{name:cartItem.name , quantity:cartItem.quantity , image:cartItem.image ,price:cartItem.price, idUser:state.idUser,location:state.location}}/>)
+                    (<CheckoutItem key={cartItem.id} cartItem={{name:cartItem.name , quantity:cartItem.quantity , id:cartItem.idWhisky ,price:cartItem.price, idUser:state.idUser,location:state.location}}/>)
                     )
                 }
 
@@ -212,7 +215,6 @@ export function CheckoutPage(){
                     <label htmlFor="text" className="form-label" style={{color:'Black'}}> ¡Help us with a review or suggestion!</label> 
                     <button onClick={actionReview} class="custom-button"> ENTER REVIEW </button>
                     <br></br>
-                    <button onClick={actionSuggestion} class="custom-button"> ENTER SUGGESTION </button>
                 </div>
                 <br></br><br></br><br></br>
                 <br></br><br></br><br></br>

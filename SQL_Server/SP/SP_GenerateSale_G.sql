@@ -7,7 +7,7 @@ BEGIN
 DECLARE @min INT, @max INT, @price INT, @idSale INT, @idWhisky INT, @quantity INT, @idShipping INT
 DECLARE @table TABLE (idShoppingCart INT, idWhisky INT, quantity INT)
 
-BEGIN TRY
+--BEGIN TRY
 	IF @country = 'USA'
 	BEGIN
 		BEGIN TRANSACTION -- generate sale for shopping cart products
@@ -58,7 +58,7 @@ BEGIN TRY
 		
 		COMMIT TRANSACTION
 
-		SELECT S.idSale,CONVERT(Varchar,S.[date],107) AS date, idStore, Users.idUser, Users.name, Users.lastName,
+		SELECT S.idSale,CONVERT(Varchar,S.[date],107) AS date, idStore, Users.idUser, Users.name , Users.lastName,
 			   email, Whisky.idWhisky, Whisky.name, quantity, price, priceXKm, @km AS km
 		FROM DB_USA.dbo.Sale AS S
 		INNER JOIN DB_USA.dbo.WhiskyXSale
@@ -94,7 +94,7 @@ BEGIN TRY
 			INSERT INTO @table
 			SELECT idShoppingCart, idWhisky, quantity FROM DB_Ireland.dbo.ShoppingCart
 			WHERE idUser = @idUser AND bought = 0
-			
+			SELECT * FROM @table
 			SELECT @min = MIN(idShoppingCart), @max = MAX(idShoppingCart) FROM DB_Ireland.dbo.ShoppingCart
 			WHERE idUser = @idUser
 			WHILE(@min <= @max)
@@ -229,10 +229,19 @@ BEGIN TRY
 				
 	END
 
-END TRY
+/*END TRY
 BEGIN CATCH
 	ROLLBACK
 	SELECT 'Error' AS ALGOSALIOMAL
-END CATCH
+END CATCH*/
 END
 RETURN 1
+
+/*
+SELECT * FROM DB_Scotland.dbo.ShoppingCart
+SELECT * FROM DB_Ireland.dbo.ShoppingCart
+SELECT idShoppingCart, idWhisky, quantity FROM DB_Ireland.dbo.ShoppingCart
+SELECT * FROM DB_Ireland.dbo.Users
+SELECT * FROM ShoppingCard
+EXEC SP_GenerateSale_G '45','Ireland','2','5669588'
+*/

@@ -14,8 +14,7 @@ export function CheckoutItem ({ cartItem}) {
     } if (cartItem.location == 'Scotland'){
         currency = 'Sterling pounds'
     } 
-
-  const { name, image, price, quantity } = cartItem;
+  const { name, image, price, quantity, id } = cartItem;
   const remove = () => {
     try {
         const response = axios.post('http://localhost:3001/catalog/deleteShoppingCart',{name:cartItem.name, idUser:cartItem.idUser, location:cartItem.location})
@@ -27,10 +26,11 @@ export function CheckoutItem ({ cartItem}) {
   return (
     <Fragment>
       <div className="checkout-item">
-        <div className="image-container">
-          <img src={image} alt="item" />
-        </div>
-        <span className="name">{name}</span>
+        <span className="image-container" > {id}
+        </span>
+        <span className="name">
+          <span className="name">{name}</span>
+        </span>
         <span className="quantity">
           <span className="value">{quantity}</span>
         </span>

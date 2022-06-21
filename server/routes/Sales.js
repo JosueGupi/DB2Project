@@ -31,6 +31,7 @@ app.post('/generateSale', function (req, res) {
         const numberStore = req.body.numberStore
         const distance = req.body.distance
         //query to the database and get the records
+        console.log("EXEC SP_GenerateSale_G '"+idUser+"','"+location+"','"+numberStore+"','"+distance+"'")
         request.query("EXEC SP_GenerateSale_G '"+idUser+"','"+location+"','"+numberStore+"','"+distance+"'", function (err, recordset) {
             
             var nodemailer = require('nodemailer');
@@ -59,6 +60,7 @@ app.post('/generateSale', function (req, res) {
             var km = 0
             var shipping = 0 
             var priceXKm = 0
+            console.log(recordset)
             const email = recordset.recordset[0].email  
             const dateS = recordset.recordset[0].date
             const idStore = recordset.recordset[0].idStore 

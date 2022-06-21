@@ -22,9 +22,7 @@ export function MySaleItem({item}){
 
     const action = () => {
         try {
-            /*const response = axios.post('http://localhost:3001/catalog/addShoppingCart',{name:card.name,idUser:card.idUser,location:card.location})
-            console.log(response);*/
-            navigate('/getMySuggestions',{state:{idUser:item.idUser,username:item.username,location:item.location}});
+            navigate('/getMySuggestions',{state:{idUser:item.idUser,username:item.username,location:item.location,idSale:item.id}});
         } catch (err) {
             alert("Error sending suggestion")
         }
@@ -41,7 +39,6 @@ export function MySaleItem({item}){
                         <p className ="card-text">Store {item.idStore} {item.location}</p>
                         {  
                             arrayDescription.map((i) =>{
-                                console.log('here description' + i)
                                {/* return(
                                     <ItemDescription item = {{idWhisky:i.idWhisky, whisky: i.whisky, 
                                                               quantity:i.quantity, price:i.price}}/>

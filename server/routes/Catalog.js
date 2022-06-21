@@ -208,7 +208,7 @@ app.post('/updateSuscription', function (req, res) {
             }
           });
           console.log('sending an email..')  
-          
+          console.log(recordset)
           var currency = ''
           if (location == 'USA'){
             currency = ' Dollars'

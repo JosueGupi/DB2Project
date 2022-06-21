@@ -225,15 +225,18 @@ app.post('/createEmployeeRating', function (req, res) {
 
   // connect to your database
   connection.connect();
-  const employeeID = req.body.employeeID
-  const ratingEmployee = req.body.ratingEmployee
+ 
+  const saleID = req.body.saleID
   const user = req.body.user
-  const comment = req.body.comment
+  const commentsPreparation = req.body.commentsPreparation
+  const commentsDelivery = req.body.commentsDelivery
+  const ratingDelivery = req.body.ratingDelivery
+  const ratingPreparation = req.body.ratingPreparation
 
-      // create Request object
+  // create Request object
   console.log(req.body)
   
-  connection.query("CALL SP_CreateEmployeeRating_G ("+employeeID+",'"+user+"','"+comment+"','"+ratingEmployee+"')", function (error, results) {
+  connection.query("CALL SP_CreateEmployeeRating_G ("+saleID+",'"+user+"','"+commentsDelivery+"','"+commentsPreparation+"','"+ratingDelivery+"','"+ratingPreparation+"')", function (error, results) {
       if (error) throw error;
       res.json(results);
     });
@@ -269,5 +272,32 @@ app.post('/getRatingsUser', function (req, res) {
   // query to the database and get the records
 });
 
+app.post('/insertDeliveryPreparat', function (req, res) {
+    
+  var mysql      = require('mysql2');
+  var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'tutorial.2020',
+  database : 'employeedata',
+  port     : '23306'
+  });
+
+  // connect to your database
+  connection.connect();
+  const idSale = req.body.idSale
+  const location = req.body.location
+
+  // create Request object
+  console.log(req.body)
+  
+  connection.query("CALL SP_InsertDeliveryPreparat_G ("+idSale+",'"+location+"')", function (error, results) {
+      if (error) throw error;
+      res.json(results);
+    });
+     
+  connection.end();
+  // query to the database and get the records
+});
 
 module.exports = app;

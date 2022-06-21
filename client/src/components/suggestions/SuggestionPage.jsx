@@ -39,7 +39,7 @@ export function SuggestionPage(){
                        <div className='form-div'>
                            <h1 className ="display-1" style={{color:'Gold'}}>Create Ticket</h1>
                            <br/>
-                           <SuggestionForm state = {{idUser:state.idUser,username:state.username,location:state.location}}/>                            
+                           <SuggestionForm state = {{idUser:state.idUser,username:state.username,location:state.location,idSale:state.idSale}}/>                            
                            <br/><br/><br/>
                            <h1 className ="display-1" style={{color:'Gold'}}>My Tickets</h1>
                            <br/>

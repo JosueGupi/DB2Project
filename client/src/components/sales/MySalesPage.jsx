@@ -44,7 +44,6 @@ export function MySalesPage(){
                             <div className="row row-cols-2 row-cols-md-2 g-4">
                                 {
                                     arraySales.map((i) =>{
-                                        
                                     return(
                                         <MySaleItem item = {{id:i.idSale, username:state.username, idUser:state.idUser, 
                                                              location:state.location, date:i.date, idStore:i.idStore}}/>
