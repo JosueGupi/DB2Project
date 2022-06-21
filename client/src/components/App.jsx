@@ -26,7 +26,7 @@ import {GetReviewsPage} from './reviews/GetReviewsPage';
 import {MySalesPage} from './sales/MySalesPage';
 import {SuggestionPage} from './suggestions/SuggestionPage';
 import {SuggestionResponse} from './suggestions/SuggestionResponse';
-
+import { UpdateSubscriptionsPage } from "./catalog/UpdateSubscriptionsPage";
 
 import '../App.css';
 
@@ -59,6 +59,7 @@ import '../App.css';
                     <Route exact path = "/getMySales" element = {<MySalesPage/>}/>
                     <Route exact path = "/getMySuggestions" element = {<SuggestionPage/>}/>
                     <Route exact path = "/getSuggestResponse" element = {<SuggestionResponse/>}/>
+                    <Route exact path = "/updateSubscription" element = {<UpdateSubscriptionsPage/>}/>
                 </Routes>
             </div>
         </Router>

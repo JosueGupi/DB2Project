@@ -53,6 +53,7 @@ app.post('/createReview', function (req, res) {
         server: 'localhost',
         database: 'DB_USA',
         port:1433,
+        requestTimeout: 300000,
   
         options: {
           encrypt: true, // for azure

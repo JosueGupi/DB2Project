@@ -13,6 +13,7 @@ ALTER PROCEDURE SP_UpdateProduct_J
     @price INT,
     @whiskyID INT
 AS   
+IF @sub IS NULL SET @sub = 0 
 BEGIN
 DECLARE @supplierID INT
     , @whiskyTypeID INT
@@ -162,8 +163,9 @@ DECLARE @supplierID INT
                 ,price = CASE WHEN @price = 0 THEN price ELSE @price END
             WHERE @storeNumber = 'Store C'
             AND idWhisky = @whiskyID;
+
             
-        END       
+        END  
 
 
         
@@ -198,4 +200,25 @@ SELECT * FROM DB_Ireland.dbo.Whisky
 
 SELECT * FROM DB_USA.dbo.ERROR
 
-EXEC SP_UpdateProduct_J 'USA','Store A',0,'LuisSA',4,NULL,1,'New','asd',15,1*/
+    @country varchar(32),   
+    @storeNumber varchar(32),
+    @qty INT,
+    @supplier VARCHAR(32),
+    @sub INT,
+    @name VARCHAR(32),
+    @aged INT,
+    @whiskytype VARCHAR(32),
+    @file VARBINARY(MAX),
+    @price INT,
+    @whiskyID INT
+
+EXEC SP_UpdateProduct_J 'USA','Store A',0,'LuisSA',4,NULL,1,'New','asd',15,1
+DECLARE @img VARBINARY(MAX) = (SELECT BulkColumn FROM OPENROWSET(BULK 'C:\+glenfiddich.jpg+"',SINGLE_BLOB) AS Imagen);
+EXEC SP_UpdateProduct_J 'USA','Store A',0,NULL,0,NULL,0,NULL,'asd',0,5
+EXEC SP_UpdateProduct_J 'USA','Store A',0,NULL,0,NULL,0,NULL,'asd',0,5
+
+DECLARE @img VARBINARY(MAX) = (SELECT BulkColumn FROM OPENROWSET(BULK 'C:\glenfiddich.jpg',SINGLE_BLOB) AS Imagen);
+EXEC SP_UpdateProduct_J 'USA','Store A',0,NULL,0,NULL,0,NULL,@img,0,5
+
+*/
+

@@ -85,6 +85,51 @@ app.post('/create_account', function (req, res) {
       //query to the database and get the records
       request.query("EXEC SP_CreateAccount_G '"+name+"', '"+lastName+"', '"+email+"', '"+username+"', '"+password+"', '"+subscription+"', '"+country+"',"+is_admin, function (err, recordset) {
 
+        var nodemailer = require('nodemailer');
+        const transporter = nodemailer.createTransport({
+          host: 'smtp.ethereal.email',
+          port: 587,
+          secure: false,
+          auth: {
+              user: 'nigel.kessler71@ethereal.email',
+              pass: 'rWt94pscGvnPmneM1x'
+          }
+        });
+        console.log('sending an email..')  
+        
+        var currency = ''
+        if (country == 'usa'){
+          currency = ' Dollars'
+        }
+        if (country == 'ireland'){
+          currency = ' Euros'
+        }
+        if (country == 'scotland'){
+          currency = ' Sterling pounds'
+        }    
+        
+        const email = recordset.recordset[0].email
+        const username = recordset.recordset[0].username
+        const price = recordset.recordset[0].price
+        const subscription = recordset.recordset[0].subscription
+
+        var mailOptions = {
+          from: "Whisky",
+          to: email,
+          subject: "Create Account",
+          text: "User: " + username +
+                "\n\n You have created an account with the subscription " + subscription 
+                + "\n\n\n Total: " + price + currency + "\n\n Thank you for your purchase."
+        }
+        transporter.sendMail(mailOptions,(error,info)=>{
+          if (error){
+            console.log(error.message)
+          }
+          else{
+            console.log('WORKS!!!')
+          }
+        });
+
           if (err) console.log(err)
           // send records as a response 
           sql.close();

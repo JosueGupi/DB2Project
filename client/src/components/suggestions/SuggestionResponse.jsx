@@ -29,24 +29,19 @@ export function SuggestionResponse(){
     }
     return (
         <Fragment>
-           <header className="Admin-header">   
-                <div style={{ backgroundImage: 'url(require("./Images/AdminBGJ.png"))' }}>
-                    <div className='container mx-auto'>
-                        <div className='form-div'>
-                            <h1 className ="display-1" style={{color:'Gold'}}>Tickets</h1>
-                            <br/>
-                            
+           <header className="App-header">
+               <div style={{ backgroundImage: 'url(require("./Images/loginBackgroundJ.png"))' }}>
+                   <div className='form-div'>
+                       <h1 className ="display-1" style={{color:'Gold'}}>My Tickets</h1>
+                       <br/>                      
                             {
                                 arrayComment.map((i) =>{
                                 return(
                                     <Response Comment = {{Username:i.Username,DateC:i.DateC,Commentary:i.Commentary}}/>
                                 )})
-                                } 
-                            
-                        </div>
-                    </div>
-                </div>
-                
+                            }                
+                    </div>    
+                </div> 
                 <center>
                     <button type="button" className="btn btn-warning" onClick={routeCatalog}>Back to home</button>
                 </center>

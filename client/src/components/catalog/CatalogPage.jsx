@@ -18,10 +18,11 @@ export function CatalogPage(){
     const [arrayCard, setArrayCard] = useState([]) //hook use state
 
     useEffect(() => {
-        // GET request using axios inside useEffect React hook
-        axios.post('http://localhost:3001/catalog/get_catalog',{idUser:state.idUser, location:state.location}) //
-            .then(response => setArrayCard(response.data.recordset))
-    
+        (async() => {
+            const response = await axios.post('http://localhost:3001/catalog/get_catalog',{idUser:state.idUser, location:state.location}) 
+            console.log(response)
+            setArrayCard(response.data.recordset)
+        })()
     // empty dependency array means this effect will only run once 
     }, []);
 
@@ -63,6 +64,16 @@ export function CatalogPage(){
         }
     }
 
+    const actionSubscriptions = async() => {
+        try {
+            console.log("open actionSubscriptions " + state.idUser)      
+            /*const response = await axios.post('http://localhost:3001/checkout/selectSales',{idUser:state.idUser, location:state.location})
+            console.log(response.data.recordset)*/
+            navigate('/updateSubscription',{state:{idUser:state.idUser,username:state.username,location:state.location}});
+        } catch (err) {
+            alert("Error opening Subscriptions")
+        }
+    }
 
     return (
         <Fragment>
@@ -92,6 +103,9 @@ export function CatalogPage(){
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <button type="button" className="btn btn-warning" onClick={actionMySales}> My Sales </button>
                     </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <button type="button" className="btn btn-warning" onClick={actionSubscriptions}> Subscriptions </button>
+                    </ul>
                     <button type="button" className="btn btn-warning" onClick={action}> Shopping Cart </button>
                     </div>
                 </div>
@@ -107,9 +121,9 @@ export function CatalogPage(){
                             <div className="row row-cols-4 row-cols-md-4 g-4">
                                 {
                                     arrayCard.map((i) =>{
-                                    return(
-                                        <Card card = {{name:i.name[0], aged:i.aged, whiskyType:i.name[1], 
-                                                       supplier:i.name[2], subscription:i.name[3], price:i.name[4], idUser:state.idUser,
+                                    return(         			 				 
+                                        <Card card = {{name:i.whisky, aged:i.aged, whiskyType:i.type, 
+                                                       supplier:i.supplier, subscription:i.subs, price:i.price, idUser:state.idUser,
                                                        location:state.location, price:i.price, image:i.image}}/>
                                     )})
                                 } 

@@ -34,28 +34,22 @@ export function SuggestionPage(){
         <Fragment>
            <header className="App-header">
            <div style={{ backgroundImage: 'url(require("./Images/loginBackgroundJ.png"))' }}>
-
-            <div className='container mx-auto'>   
-                    <div className='container mx-auto'>
-                        <div className='form-div'>
-
-                        <h1 className ="display-1" style={{color:'Gold'}}>Create Ticket</h1>
-                        <br/>
-                        <SuggestionForm state = {{idUser:state.idUser,username:state.username,location:state.location}}/>
-
-                        <br/><br/><br/>
-                        <h1 className ="display-1" style={{color:'Gold'}}>My Tickets</h1>
-                            <br/>
-
-                            
+               <div className='container mx-auto'>
+                   <div className='container mx-auto'>
+                       <div className='form-div'>
+                           <h1 className ="display-1" style={{color:'Gold'}}>Create Ticket</h1>
+                           <br/>
+                           <SuggestionForm state = {{idUser:state.idUser,username:state.username,location:state.location}}/>                            
+                           <br/><br/><br/>
+                           <h1 className ="display-1" style={{color:'Gold'}}>My Tickets</h1>
+                           <br/>
                             {
                                 arrayTicket.map((i) =>{
                                 return(
                                     <SuggestionItem ticket = {{Rating:i.Rating,Commentary:i.Commentary,idEmployeeRating:i.idEmployeeRating,
                                                              idUser:state.idUser,username:state.username,location:state.location}}/>
                                 )})
-                               } 
-                            
+                            } 
                         </div>
                     </div>
                 </div>

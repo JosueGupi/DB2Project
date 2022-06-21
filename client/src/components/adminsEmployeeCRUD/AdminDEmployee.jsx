@@ -17,7 +17,7 @@ export  function AdminDEmployee() {
         try {
             
             const response = await axios.post('http://localhost:3001/adminEmployees/deleteEmployee',data)
-            alert("Employee delete it correctly!!!")
+            alert("Product delete it correctly!!!")
             
 
         } catch (err) {

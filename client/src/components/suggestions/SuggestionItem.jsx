@@ -16,19 +16,14 @@ export function SuggestionItem({ticket}){
     }
 
     return (
-        
         <div className="col">
             <div className="container">
                 <div className="container" style={{opacity:0.85,backgroundColor:'gray', borderRadius: '50px 50px 50px 50px',margin:'2%'}}>
                     <div className="modal-body" >
-                            <center>
-                                <p>{ticket.idEmployeeRating}</p>
-                                
-                        
-                        <h5 className="model-title" >{ticket.Commentary}</h5>
-                        
-                        
-                        <button onClick={action} className="btn btn-warning" >Check</button>
+                        <center>
+                            <p>{ticket.idEmployeeRating}</p>
+                            <h5 className="model-title" >{ticket.Commentary}</h5>
+                            <button onClick={action} className="btn btn-warning" >Check</button>
                         </center>
                     </div>
                 </div>

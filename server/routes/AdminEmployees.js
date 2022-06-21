@@ -174,7 +174,6 @@ app.post('/getComments', function (req, res) {
       
 
       // create Request object
-  console.log(idTicket)
   
   connection.query("CALL SP_GetConversation_J ("+idTicket+")", function (error, results) {
       if (error) throw error;

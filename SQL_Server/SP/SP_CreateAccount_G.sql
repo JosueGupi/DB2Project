@@ -28,26 +28,36 @@ BEGIN TRY
 	BEGIN
 		SELECT @idSubscription = idSubscription FROM DB_USA.dbo.Subscription WHERE name = @subscription
 		INSERT INTO DB_USA.dbo.Users(idSubscription,administrator,name,lastName,username,password,email,location)
-			VALUES(@idSubscription,@administrator,@name,@lastName,@username,HASHBYTES('SHA2_256',@password),@email,geography::Point(0,0,4326))		SELECT name
+			VALUES(@idSubscription,@administrator,@name,@lastName,@username,HASHBYTES('SHA2_256',@password),@email,geography::Point(0,0,4326))		
+
+		SELECT username, email, price, Subscription.name AS subscription
 		FROM DB_USA.dbo.Users
-		WHERE idUser = SCOPE_IDENTITY() 
+		INNER JOIN DB_USA.dbo.Subscription
+			ON Users.idSubscription = Subscription.idSubscription
+		WHERE idUser = SCOPE_IDENTITY()  
 	END
 	IF @country = 'scotland'
 	BEGIN
 		SELECT @idSubscription = idSubscription FROM DB_Scotland.dbo.Subscription WHERE name = @subscription
 		INSERT INTO DB_Scotland.dbo.Users(idSubscription,administrator,name,lastName,username,password,email,location)
 			VALUES(@idSubscription,@administrator,@name,@lastName,@username,HASHBYTES('SHA2_256',@password),@email,geography::Point(0,0,4326))
-		SELECT name
+		
+		SELECT username, email, price, Subscription.name AS subscription
 		FROM DB_Scotland.dbo.Users
-		WHERE idUser = SCOPE_IDENTITY()  
+		INNER JOIN DB_Scotland.dbo.Subscription
+			ON Users.idSubscription = Subscription.idSubscription
+		WHERE idUser = SCOPE_IDENTITY() 
 	END
 	IF @country = 'ireland' 
 	BEGIN
 		SELECT @idSubscription = idSubscription FROM DB_Ireland.dbo.Subscription WHERE name = @subscription
 		INSERT INTO DB_Ireland.dbo.Users(idSubscription,administrator,name,lastName,username,password,email,location)
 			VALUES(@idSubscription,@administrator,@name,@lastName,@username,HASHBYTES('SHA2_256',@password),@email,geography::Point(0,0,4326))
-		SELECT name
+		
+		SELECT username, email, price, Subscription.name AS subscription
 		FROM DB_Ireland.dbo.Users
+		INNER JOIN DB_Ireland.dbo.Subscription
+			ON Users.idSubscription = Subscription.idSubscription
 		WHERE idUser = SCOPE_IDENTITY() 
 	END
 END TRY

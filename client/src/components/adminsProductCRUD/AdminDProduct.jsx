@@ -17,7 +17,7 @@ export  function AdminDProduct() {
         try {
             
             const response = await axios.post('http://localhost:3001/adminProduct/deleteProduct',data)
-            alert("Employee delete it correctly!!!")
+            alert("Product delete it correctly!!!")
             
 
         } catch (err) {

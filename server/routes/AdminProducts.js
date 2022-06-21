@@ -216,7 +216,7 @@ app.post('/updateProduct', function (req, res) {
         const type = req.body.type == '' ? 'NULL' : "'"+req.body.type+"'"
         const file = req.body.file == '' ? 'DECLARE @img VARBINARY(MAX) = NULL;' : "DECLARE @img VARBINARY(MAX) = (SELECT BulkColumn FROM OPENROWSET(BULK 'C:\\"+req.body.file+"',SINGLE_BLOB) AS Imagen);"
         const q = file + "EXEC SP_UpdateProduct_J '"+country+"','"+store+"',"+qty+","+supplier+","+sub+","+name+","+aged+","+type+",@img,"+price+","+whiskyId
-        console.log(req.body)
+        console.log(q)
         // query to the database and get the records
         
         request.query(q, function (err, recordset) {

@@ -5,6 +5,16 @@ import axios from 'axios';
 import './checkout.styles.scss';
 
 export function CheckoutItem ({ cartItem}) {
+
+  var currency = ''
+    if (cartItem.location == 'USA'){
+        currency = 'Dollars'
+    } if (cartItem.location == 'Ireland'){
+        currency = 'Euros'
+    } if (cartItem.location == 'Scotland'){
+        currency = 'Sterling pounds'
+    } 
+
   const { name, image, price, quantity } = cartItem;
   const remove = () => {
     try {
@@ -24,7 +34,7 @@ export function CheckoutItem ({ cartItem}) {
         <span className="quantity">
           <span className="value">{quantity}</span>
         </span>
-        <span className="price">{price}</span>
+        <span className="price">{price} {currency} </span>
         <button onClick={remove} className="custom-button" >
           &#10005;
         </button>

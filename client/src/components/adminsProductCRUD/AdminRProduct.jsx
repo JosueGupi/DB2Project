@@ -16,8 +16,8 @@ export  function AdminRProduct() {
     const [subscription, setSubscription] = useState('');
     const [image, setImage] = useState('');
     
-    
-
+    console.log('image admin')
+    console.log(image)
     const onSubmit = async (data) => {
         try {
             

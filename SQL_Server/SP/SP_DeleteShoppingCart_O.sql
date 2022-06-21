@@ -1,7 +1,7 @@
 USE DB_USA
 
 GO
-ALTER PROCEDURE SP_DeleteShoppingCartItem_O @whisky VARCHAR(16), @idUser INT, @country VARCHAR(16)
+CREATE PROCEDURE SP_DeleteShoppingCartItem_O @whisky VARCHAR(16), @idUser INT, @country VARCHAR(16)
 AS
 DECLARE @max INT
 DECLARE @idWhisky INT
